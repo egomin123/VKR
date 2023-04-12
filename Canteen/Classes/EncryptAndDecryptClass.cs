@@ -19,7 +19,7 @@ namespace Canteen.Classes
                 return "";
 
             byte[] initVecB = Encoding.ASCII.GetBytes(initVec);
-            byte[] solB = Encoding.ASCII.GetBytes(sol);
+            byte[] solB = Encoding.ASCII.GetBytes(sol);  
             byte[] ishTextB = Encoding.UTF8.GetBytes(ishText);
 
             PasswordDeriveBytes derivPass = new PasswordDeriveBytes(pass, solB, cryptographicAlgorithm, passIter);

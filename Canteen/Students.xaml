@@ -1,0 +1,47 @@
+﻿<Page x:Class="Canteen.Students"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Canteen"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Students" Height="466.507" Width="850" Loaded="Window_Loaded">
+
+    <Grid Background="DarkGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu HorizontalAlignment="Left"  HorizontalContentAlignment="Center" Height="62" Margin="690,4,0,0" VerticalAlignment="Top" Width="150">
+            <MenuItem Foreground="Black" Background="AliceBlue" HorizontalAlignment="Center" HorizontalContentAlignment="Center" x:Name="LoginBlock" Header="Файл" Width="151" Height="62">
+                <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
+            </MenuItem>
+        </Menu>
+
+        <DataGrid Name="MetricsDataGrid" Margin="3,85,6.6,17.4"
+          AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер группы" Binding="{Binding GroupNumber}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Д.Рождения" Binding="{Binding DateOfBirth}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Емаил" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="С.паспорта" Binding="{Binding SeriaPassport}"/>
+                <DataGridTextColumn Header="Н.паспорта" Binding="{Binding NumberPasport}"/>
+                <DataGridTextColumn Header="Балл аттестата" Binding="{Binding Attestat}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Сохранить список" HorizontalAlignment="Left" Margin="316,49,0,0" VerticalAlignment="Top" Width="203" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="6,30,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Список студентов" VerticalAlignment="Top" Height="55" Width="305"/>
+        <Button Content="Распределить по группам" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top" Width="204" Click="Button_Click1"/>
+        <TextBox x:Name="Hide" Background="White" HorizontalAlignment="Left" Height="31" Margin="524,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151"/>
+        <Button Content="Поиск" HorizontalAlignment="Left" Margin="525,50,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
+
+    </Grid>
+</Page>

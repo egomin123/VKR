@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Canteen.Pages.StudentsWithGroup" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAARgEAAAEAAAAkAAAAAAAAAABAAAQACAAA=</HashCode>
+      <FileName>Pages\StudentsWithGroup.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.AbiturientList" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAAAAAAAAADAAAAAEACAAkAAAAAAAAgABAAAQAAAAA=</HashCode>
+      <FileName>Pages\AbiturientList.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.Authorization" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAEAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Pages\Authorization.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.ChangePassword" BaseTypeListCollapsed="true">
+    <Position X="14" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAE=</HashCode>
+      <FileName>Pages\ChangePassword.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.ForgetThePassword" BaseTypeListCollapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAEAACAAAAAAAAAACAAAAAAAAAAAAAACACAAAA=</HashCode>
+      <FileName>Pages\ForgetThePassword.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.Groups" BaseTypeListCollapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAABAEAAIEAAAAEAAAAAAAAAABAAAAACAAA=</HashCode>
+      <FileName>Pages\Groups.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.HowMuchGetAbiturientsOnStudentPage" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAIAAAAAAAAAAEAAAAEAAAAAAAAAABAAAACAAAA=</HashCode>
+      <FileName>Pages\HowMuchGetAbiturientsOnStudentPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.HowMuchGroups" BaseTypeListCollapsed="true">
+    <Position X="8" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAABAAAACCAAA=</HashCode>
+      <FileName>Pages\HowMuchGroups.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.MainPage" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAABAsiAAAEAAAAgQBAAAAAACERAAAAAABAA=</HashCode>
+      <FileName>Pages\MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.Profile" BaseTypeListCollapsed="true">
+    <Position X="11" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAEAkAAAAEAAAAgAAAAAAAACABAAAAgAAAA=</HashCode>
+      <FileName>Pages\Profile.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Pages.Registrarion" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQEAAAAAAAABAAAAAAAAACEAAAAAQAAAAABACAiAAAA=</HashCode>
+      <FileName>Pages\Registrarion.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Classes.Abiturient">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAGgAICAAAAAAAAAAQBAAAAAQAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Classes\Abiturient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.Classes.ConnectToDB">
+    <Position X="17" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAEAgQoQIgAEAAAAAAAAQAAIAAABEgECBAAAAQAgg=</HashCode>
+      <FileName>Classes\ConnectToDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.Classes.EncryptAndDecryptClass">
+    <Position X="8" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\EncryptAndDecryptClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.Classes.Group">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Classes\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.Classes.Model">
+    <Position X="14" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAgAAAAAIAAAEAAAACAAA=</HashCode>
+      <FileName>Classes\Model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.Classes.Student">
+    <Position X="11" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAGgAICAAAAAAAAAAQBAAAAAQAAAAAgAACAAAAAA=</HashCode>
+      <FileName>Classes\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.Classes.User">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGgAACAAAAAAEAAAAAAAAAAAAAACAgAQCAAAAAA=</HashCode>
+      <FileName>Classes\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canteen.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="14" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Canteen.Students" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAABgEAAAEACAAkAAAAAAAAAABAAAQACAAA=</HashCode>
+      <FileName>Students.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,42 @@
+﻿<Page x:Class="Canteen.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Canteen.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+        Title="MainPage" Height="500" Width="850" Loaded="Window_Loaded">
+
+    <Grid Background="DarkGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="2,75,0,0" TextWrapping="Wrap" Background="Gray" Text="" VerticalAlignment="Top" Width="156" Height="421"/>
+        <TextBlock HorizontalAlignment="Left" Margin="2,2,0,0" TextWrapping="Wrap" Background="Gray" Text="" VerticalAlignment="Top" Height="67" Width="840"/>
+
+        <Menu HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="62" Margin="690,4,0,0" VerticalAlignment="Top" Width="150">
+            <MenuItem Foreground="Black" Background="AliceBlue" HorizontalAlignment="Center" HorizontalContentAlignment="Center" x:Name="LoginBlock" Header="Файл" Width="151" Height="62">
+                <MenuItem x:Name="MyProfile" Header="Мой профиль" Click="MyProfile_Click" />
+                <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
+            </MenuItem>
+        </Menu>
+        <Image x:Name="ImagePhoto" HorizontalAlignment="Left" Height="234" Margin="248,161,0,0" VerticalAlignment="Top" Width="372" Source="Priem.jpg" Stretch="Fill"/>
+        <Button Content=">" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="22" FontSize="10" Click="NextImage" Margin="579,372,0,0"/>
+        <Button Content="&lt;" HorizontalAlignment="Left" Margin="249,372,0,0" VerticalAlignment="Top" Width="41" Height="22" FontSize="10" Click="BackImage"/>
+        <TextBlock Name="PhotoNumberText" HorizontalAlignment="Left" Margin="595,165,0,0" TextWrapping="Wrap" Text="1/2" VerticalAlignment="Top" Width="21"/>
+        <Button Content="Перейти" HorizontalAlignment="Left" Margin="290,372,0,0" VerticalAlignment="Top" Width="287" Height="22" FontSize="10" Click="Go_To_Page"/>
+        <Button Content="Перейти" HorizontalAlignment="Left" Margin="11,115,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_Page1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="11,94,0,0" TextWrapping="Wrap" Text="Список абитуриентов" VerticalAlignment="Top"/>
+        <Button Content="Перейти" HorizontalAlignment="Left" Margin="11,165,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_Page2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="11,144,0,0" TextWrapping="Wrap" Text="Список студентов" VerticalAlignment="Top"/>
+        <Button Content="Перейти" HorizontalAlignment="Left" Margin="12,218,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_Group"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,197,0,0" TextWrapping="Wrap" Text="Список групп" VerticalAlignment="Top"/>
+        <TextBlock TextAlignment="Center" Name="TextTextText" HorizontalAlignment="Left" Margin="234,79,0,0" TextWrapping="Wrap" Text="TEXT TEXT TEXT TEXT" FontSize="25" FontWeight="Bold" VerticalAlignment="Top" Height="80" Width="395"/>
+        
+
+    </Grid>
+</Page>

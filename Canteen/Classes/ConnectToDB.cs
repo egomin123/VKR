@@ -82,6 +82,7 @@ namespace Canteen.Classes
         }
         public List<Student> StudentsOnGroup(double HowMuchGroup)
         {
+            //Проверка коммита
             int AddStudent = 0; // скольким студентам дали группу
             int equal = 0;
             

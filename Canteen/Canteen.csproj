@@ -123,6 +123,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Direction.cs" />
+    <Compile Include="Classes\Question.cs" />
+    <Compile Include="Classes\Roles.cs" />
+    <Compile Include="Classes\Test.cs" />
+    <Compile Include="Pages\AbiturientListFromAdmin.xaml.cs">
+      <DependentUpon>AbiturientListFromAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AbiturientTestPage.xaml.cs">
+      <DependentUpon>AbiturientTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddAttestat.xaml.cs">
+      <DependentUpon>AddAttestat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Abiturient.cs" />
     <Compile Include="Classes\DsmEntity.cs" />
     <Compile Include="Classes\Group.cs" />
@@ -131,6 +147,15 @@
     <Compile Include="Classes\Student.cs" />
     <Compile Include="Pages\AbiturientList.xaml.cs">
       <DependentUpon>AbiturientList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddTestPage.xaml.cs">
+      <DependentUpon>AddTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateTestPage.xaml.cs">
+      <DependentUpon>CreateTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DirectionListPage.xaml.cs">
+      <DependentUpon>DirectionListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Groups.xaml.cs">
       <DependentUpon>Groups.xaml</DependentUpon>
@@ -141,19 +166,66 @@
     <Compile Include="Pages\HowMuchGroups.xaml.cs">
       <DependentUpon>HowMuchGroups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\InputAbiturientInfoPage.xaml.cs">
+      <DependentUpon>InputAbiturientInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage1.xaml.cs">
       <DependentUpon>MainPage1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\QuestionListForAdminPage.xaml.cs">
+      <DependentUpon>QuestionListForAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ReadTestPage.xaml.cs">
+      <DependentUpon>ReadTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResultsTestsPage.xaml.cs">
+      <DependentUpon>ResultsTestsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StartTestPage.xaml.cs">
+      <DependentUpon>StartTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StudentsWithGroup.xaml.cs">
       <DependentUpon>StudentsWithGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TesterPage.xaml.cs">
+      <DependentUpon>TesterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TestList.xaml.cs">
+      <DependentUpon>TestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UsersListForAdmin.xaml.cs">
+      <DependentUpon>UsersListForAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewTest.xaml.cs">
+      <DependentUpon>ViewTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Students.xaml.cs">
       <DependentUpon>Students.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\AbiturientListFromAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AbiturientTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddAttestat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AbiturientList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +234,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CreateTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DirectionListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\HowMuchGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InputAbiturientInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,11 +304,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\QuestionListForAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ReadTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Registrarion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ResultsTestsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StartTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\StudentsWithGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TesterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TestList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UsersListForAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ViewTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

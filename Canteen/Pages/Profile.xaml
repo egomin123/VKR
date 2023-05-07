@@ -24,16 +24,10 @@
                 <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
             </MenuItem>
         </Menu>
-        <Button Content="Перейти" HorizontalAlignment="Left" Margin="11,115,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_Page1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,94,0,0" TextWrapping="Wrap" Text="Список абитуриентов" VerticalAlignment="Top"/>
-        <Button Content="Перейти" HorizontalAlignment="Left" Margin="11,165,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_Page2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,144,0,0" TextWrapping="Wrap" Text="Список студентов" VerticalAlignment="Top"/>
-        <Button Content="Перейти" HorizontalAlignment="Left" Margin="12,218,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_Group"/>
-        <TextBlock HorizontalAlignment="Left" Margin="12,197,0,0" TextWrapping="Wrap" Text="Список групп" VerticalAlignment="Top"/>
 
         <TextBlock Text="Ваши данные" TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0" Margin="263,114,262.2,322.4" Width="318"/>
 
-        <Button Foreground="Black" Content="Изменить" HorizontalAlignment="Center" Margin="342,380,336.6,94" VerticalAlignment="Center" Width="171" Background="White" Grid.Column="0" Grid.Row="0" Click="Registrate"  Height="26" />
+        <Button  Content="Изменить" HorizontalAlignment="Center" Margin="342,380,336.6,94" VerticalAlignment="Center" Width="171"  Grid.Column="0" Grid.Row="0" Click="Registrate"  Height="26" />
         <Label Content="Имя:" HorizontalAlignment="Left" Margin="364,192,0,0" VerticalAlignment="Top" Width="35"/>
         <TextBox Name="FirstName"  HorizontalAlignment="Left" Height="23" Margin="396,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="OnluLetter"/>
         <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="338,232,0,0" VerticalAlignment="Top" Width="62"/>
@@ -42,6 +36,7 @@
         <TextBox x:Name="Patronymic"  HorizontalAlignment="Left" Height="23" Margin="396,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="OnluLetter"/>
         <Label Content="Пароль:" HorizontalAlignment="Left" Margin="337,312,0,0" VerticalAlignment="Top" Width="63"/>
         <TextBox x:Name="Password"  HorizontalAlignment="Left" Height="23" Margin="396,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="OnluLetter"/>
+        <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
 
 
     </Grid>

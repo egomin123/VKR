@@ -1,10 +1,12 @@
-﻿using Canteen.Classes;
+﻿using Aspose.Cells;
+using Canteen.Classes;
 using IronXL;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,10 +48,10 @@ namespace Canteen.Pages
             string Path = (Directory.GetCurrentDirectory() + "\\Группа " + Convert.ToString(GroupCB.SelectedValue) + ".xlsx");
             try
             {
-                WorkBook workBook = WorkBook.Load(Path);
-
+                
+                WorkBook workBook = WorkBook.Load(Path); 
+                workBook.SaveAs(Path);
                 WorkSheet workSheet = workBook.DefaultWorkSheet;
-
                 int NomerKoloncki = 3;
                 workSheet[$"A{1}"].Value = "Группа " + Convert.ToString(GroupCB.SelectedValue);
                 workSheet[$"A{2}"].Value = "Фамилия";
@@ -77,13 +79,14 @@ namespace Canteen.Pages
                     NomerKoloncki++;
                 }
                 // Save Changes
+               
                 workBook.SaveAs(Path);
                 MessageBox.Show("Список студентов сохранён в папку - " + Path);
             }
-            catch
+            catch ( Exception qwe)
             {
-                File.Create(Path);
-                MessageBox.Show("Файл создан по пути " + Path + ", повторите действие, чтобы записать в него данные");
+                
+                MessageBox.Show("Файл создан по пути. " + Path + ". Ошибка " + qwe);
             }
         }
 

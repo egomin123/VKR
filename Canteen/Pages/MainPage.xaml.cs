@@ -150,5 +150,15 @@ namespace Canteen.Pages
         {
             NavigationService.Navigate(new Groups(MainUser));
         }
+
+        private void Go_To_Direction(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DirectionListPage(MainUser));
+        }
+
+        private void Add_Attestat(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddAttestat(MainUser));
+        }
     }
 }

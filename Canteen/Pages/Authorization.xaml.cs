@@ -57,12 +57,16 @@ namespace Canteen.Pages
 
                             if (users1.Role_ID == 1)
                             {
-                              
-                                MessageBox.Show("*Авторизация под Админом*");
+
+                                NavigationService.Navigate(new AdminPage(user));
                             }
                             else if (users1.Role_ID == 2)
                             {
                                 NavigationService.Navigate(new MainPage(user));
+                            }
+                            else if (users1.Role_ID == 1003)
+                            {
+                                NavigationService.Navigate(new TesterPage(user));
                             }
                         }
                         else if (secondEqual == true && SecondEqual != 1)
@@ -90,5 +94,7 @@ namespace Canteen.Pages
         {
             NavigationService.Navigate(new Registrarion());
         }
+
+       
     }
 }

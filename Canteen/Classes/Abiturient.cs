@@ -20,6 +20,12 @@ namespace Canteen.Classes
         public int NumberPasport { get; set; }
         public string Attestat { get; set; }
 
+        public int FirstDirectionBall { get; set; }
+        public int SecondDirectionBall { get; set; }
+        public int ThiredDerictionBall { get; set; }
+        public int ID_FirstDirection { get; set; }
+        public int ID_SecondDirection { get; set; }
+        public int ID_ThiredDeriction { get; set; }
 
 
 

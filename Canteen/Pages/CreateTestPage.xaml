@@ -1,0 +1,79 @@
+﻿<Page x:Class="Canteen.Pages.CreateTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Canteen.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CreateTestPage" Height="466.507" Width="850" Loaded="Window_Loaded">
+
+    <Grid Background="DarkGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="361*"/>
+            <RowDefinition Height="105*"/>
+        </Grid.RowDefinitions>
+        <Menu HorizontalAlignment="Left"  HorizontalContentAlignment="Center" Height="62" Margin="265.2,4,0,0" VerticalAlignment="Top" Width="150" Grid.Column="1">
+            <MenuItem Foreground="Black" Background="AliceBlue" HorizontalAlignment="Center" HorizontalContentAlignment="Center" x:Name="LoginBlock" Header="Файл" Width="151" Height="62">
+                <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
+            </MenuItem>
+        </Menu>
+        <TextBlock HorizontalAlignment="Left"   Margin="292,22,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Создание теста" VerticalAlignment="Top" Height="55" Width="261" Grid.ColumnSpan="2"/>
+        <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Добавить вопрос" HorizontalAlignment="Left" Margin="32.2,58.867,0,0" VerticalAlignment="Top" Width="151" Click="Button_Click" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Сохранить тест" HorizontalAlignment="Left" Margin="222.2,58.867,0,0" VerticalAlignment="Top" Width="151" Grid.Column="1" Click="Button_Click_1" Grid.Row="1"/>
+        <Label Content="Название теста" HorizontalContentAlignment="Center" Foreground="Black" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left" Margin="24,68,0,0" VerticalAlignment="Top" Width="400"/>
+        <Label Name="AnswerL"  Content="Правильный ответ"  HorizontalContentAlignment="Center" Foreground="Black" FontSize="22"  HorizontalAlignment="Left" Margin="35,39.867,0,0" VerticalAlignment="Top" Width="197" Height="38" Grid.Row="1"/>
+
+        <Label Content="Вопрос"  HorizontalContentAlignment="Center" Foreground="Black" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,139,0,0" VerticalAlignment="Top" Width="268" Height="37"/>
+
+        <TextBox HorizontalAlignment="Left" Name="TestName" Height="34" Margin="22,108,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="401"/>
+        <TextBox HorizontalAlignment="Left" Name="QuestionTB" Height="34" Margin="22,174,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="280"/>
+        <TextBox HorizontalAlignment="Left" Name="ATB" Height="34" Margin="61,249,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="362"/>
+        <Label Content="Варианты Ответов" Name="SelectedQuestionsL"  HorizontalContentAlignment="Center" Foreground="Black" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,210,0,0" VerticalAlignment="Top" Width="388"/>
+        <TextBox HorizontalAlignment="Left" Name="BTB" Height="34" Margin="61,288,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="362"/>
+        <TextBox HorizontalAlignment="Left" Name="CTB" Height="34" Margin="61,327,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="362"/>
+        <TextBox HorizontalAlignment="Left" Name="DTB" Height="34" Margin="61,3.4,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="362" Grid.Row="1"/>
+        <Label Name="AL" Content="A" FontSize="25" Foreground="Black" HorizontalAlignment="Left" Margin="35,245,0,0" VerticalAlignment="Top" Height="38"/>
+        <Label Name="BL" Content="Б" FontSize="25" Foreground="Black" HorizontalAlignment="Left" Margin="35,283,0,0" VerticalAlignment="Top" Height="38"/>
+        <Label Name="CL" Content="В" FontSize="25" Foreground="Black" HorizontalAlignment="Left" Margin="35,320,0,0" VerticalAlignment="Top" Height="38"/>
+        <Label Name="DL" Content="Г" FontSize="25" Foreground="Black" HorizontalAlignment="Left" Margin="35,359,0,0" VerticalAlignment="Top" Height="38" Grid.RowSpan="2"/>
+        <DataGrid Name="MetricsDataGrid" Margin="2.2,107,6.6,68.4"
+          AutoGenerateColumns="False" Grid.Column="1" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Вопрос" Binding="{Binding QuestionString}" />
+                <DataGridTextColumn Header="Тип вопроса" Binding="{Binding QuestionTypeString}"/>
+                <DataGridTextColumn Header="А" Binding="{Binding A}"/>
+                <DataGridTextColumn Header="Б" Binding="{Binding B}"/>
+                <DataGridTextColumn Header="В" Binding="{Binding C}"/>
+                <DataGridTextColumn Header="Г" Binding="{Binding D}"/>
+                <DataGridTextColumn Header="Ответ" Binding="{Binding Answer}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox HorizontalAlignment="Left" Name="AnswerCB" Background="White" Margin="235,41.867,0,0" VerticalAlignment="Top" Width="187" Height="34" Grid.Row="1">
+            <ComboBoxItem>А</ComboBoxItem>
+            <ComboBoxItem>Б</ComboBoxItem>
+            <ComboBoxItem>В</ComboBoxItem>
+            <ComboBoxItem>Г</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Тип вопроса"  HorizontalContentAlignment="Center" Foreground="Black" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="303,139,0,0" VerticalAlignment="Top" Width="122" Height="37" Grid.ColumnSpan="2"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="TypeOfQuestionCB" Background="White" Margin="305,174,0,0" VerticalAlignment="Top" Width="121" Height="34" Grid.ColumnSpan="2" SelectionChanged="TypeOfQuestionCB_SelectionChanged">
+            <ComboBoxItem Content="Выбор правильного ответа"/>
+            <ComboBoxItem Content="Выбоор нескольких ответов"/>
+            <ComboBoxItem Content="Вписать ответ"/>
+        </ComboBox>
+        <TextBox HorizontalAlignment="Left" x:Name="ATBSelect" Height="34" Margin="95,249,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="328"/>
+        <TextBox HorizontalAlignment="Left" x:Name="BTBSelect" Height="34" Margin="95,288,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="328"/>
+        <TextBox HorizontalAlignment="Left" x:Name="CTBSelect" Height="34" Margin="95,327,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="328"/>
+        <TextBox HorizontalAlignment="Left" x:Name="DTBSelect" Height="34" Margin="95,3.4,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="328" Grid.Row="1"/>
+        <CheckBox Name="ACB" Content="" HorizontalAlignment="Left" Margin="73,259,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="BCB" Content="" HorizontalAlignment="Left" Margin="73,298,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="CCB" Content="" HorizontalAlignment="Left" Margin="73,334,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="DCB" Content="" HorizontalAlignment="Left" Margin="73,11.867,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+    </Grid>
+</Page>

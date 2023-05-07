@@ -1,0 +1,42 @@
+﻿<Page x:Class="Canteen.Pages.AddAttestat"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Canteen.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddAttestat" Height="466.507" Width="850" Loaded="Window_Loaded">
+
+    <Grid Background="DarkGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu HorizontalAlignment="Left"  HorizontalContentAlignment="Center" Height="62" Margin="265.2,4,0,0" VerticalAlignment="Top" Width="150" Grid.Column="1">
+            <MenuItem Foreground="Black" Background="AliceBlue" HorizontalAlignment="Center" HorizontalContentAlignment="Center" x:Name="LoginBlock" Header="Файл" Width="151" Height="62">
+                <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="Hide" Background="White" HorizontalAlignment="Left" Height="33" Margin="210.2,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
+        <Button Content="Поиск" HorizontalAlignment="Left" Margin="343.2,91,0,0" VerticalAlignment="Top" Width="75"  Grid.Column="1" Click="HideButton"/>
+
+        <DataGrid Name="MetricsDataGrid" Margin="3,85,225.6,17.4"
+          AutoGenerateColumns="False" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Аттестат" Binding="{Binding Attestat}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left"   Margin="127,29,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Список абитуриентов" VerticalAlignment="Top" Height="55" Width="393" Grid.ColumnSpan="2"/>
+        <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Изменить" HorizontalAlignment="Left" Margin="208.2,195,0,0" VerticalAlignment="Top" Width="206"  Grid.Column="1" Click="Edit_Attestat"/>
+        <TextBox Grid.Column="1" Name="AttestatTB"  HorizontalAlignment="Left" Height="23" Margin="207.2,166,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="205"/>
+        <Label Content="Аттестат" Foreground="Black" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Left" Margin="209.2,130,0,0" VerticalAlignment="Top" Width="203"/>
+    </Grid>
+</Page>

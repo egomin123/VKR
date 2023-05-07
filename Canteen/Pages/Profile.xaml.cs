@@ -87,5 +87,13 @@ namespace Canteen.Pages
         {
             NavigationService.Navigate(new Authorization());
         }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            if (MainUser.Role_ID == 2)
+                NavigationService.Navigate(new MainPage(MainUser));
+            else if (MainUser.Role_ID == 1003)
+                NavigationService.Navigate(new TesterPage(MainUser));
+        }
     }
 }

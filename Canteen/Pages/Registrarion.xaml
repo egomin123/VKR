@@ -34,7 +34,6 @@
         <TextBlock Name="TextCode" TextAlignment="Center" Text="Введите код отправленный на почту" Margin="200,309,194.6,158" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0" Width="455"/>
 
         <TextBox x:Name="Code" Grid.Column="0" Grid.Row="0" Margin="347,342,346.6,127" HorizontalAlignment="Center" VerticalAlignment="Center" Width="156" Height="31" PreviewTextInput="JustNumbers"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="136,61,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
 
 

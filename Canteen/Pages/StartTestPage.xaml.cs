@@ -23,11 +23,11 @@ namespace Canteen.Pages
     {
         User MainUser;
         int NumberCompletedTests = 0;
-        Abiturient MainAbiturient;
+        AbiturientSPO MainAbiturient;
         int ID_FirstDirection = 0;
         int ID_SecondDirection = 0;
         int ID_ThiredDirection = 0;
-        public StartTestPage(User user, Abiturient abiturient, int FirstDirection, int SecondDirection, int ThiredDirection, int CompletedTest)
+        public StartTestPage(User user, AbiturientSPO abiturient, int FirstDirection, int SecondDirection, int ThiredDirection, int CompletedTest)
         {
             InitializeComponent();
             NumberCompletedTests = CompletedTest;

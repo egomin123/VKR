@@ -5,39 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Canteen.Pages"
       mc:Ignorable="d" d:DesignWidth="800"
-     Title="MainPage" Height="466.507" Width="850" Loaded="Window_Loaded">
+     Title="MainPage" Height="466.507" Width="850" >
 
     <Grid Background="DarkGray">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <Menu HorizontalAlignment="Left"  HorizontalContentAlignment="Center" Height="62" Margin="690,4,0,0" VerticalAlignment="Top" Width="150">
-            <MenuItem Foreground="Black" Background="AliceBlue" HorizontalAlignment="Center" HorizontalContentAlignment="Center" x:Name="LoginBlock" Header="Файл" Width="151" Height="62">
-                <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
-            </MenuItem>
-        </Menu>
-        <DataGrid Name="MetricsDataGrid" Margin="3,85,6.6,17.4"
-          AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}" />
-                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
-                <DataGridTextColumn Header="Д.Рождения" Binding="{Binding DateOfBirth}"/>
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
-                <DataGridTextColumn Header="Емаил" Binding="{Binding Email}"/>
-                <DataGridTextColumn Header="С.паспорта" Binding="{Binding SeriaPassport}"/>
-                <DataGridTextColumn Header="Н.паспорта" Binding="{Binding NumberPasport}"/>
-                <DataGridTextColumn Header="Балл аттестата" Binding="{Binding Attestat}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Загрузить" HorizontalAlignment="Left" Margin="390,45,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="3,37,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Список Абитуриентов" VerticalAlignment="Top" Height="55" Width="399"/>
-        <Button Content="Отобрать" HorizontalAlignment="Left" Margin="390,10,0,0" VerticalAlignment="Top" Width="97" Click="Raspred"/>
-        <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
-
+        
     </Grid>
 </Page>

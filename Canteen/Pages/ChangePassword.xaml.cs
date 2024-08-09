@@ -73,7 +73,7 @@ namespace Canteen.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Пароли не одинаковы");
+                    MessageBox.Show("Пароли не совпадают");
                 }
 
 

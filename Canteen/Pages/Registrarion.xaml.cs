@@ -52,97 +52,101 @@ namespace Canteen.Pages
             }
             else
             {
-
-                try
+                if (AcceptedPersonalInfoCB.IsChecked == true)
                 {
-                    if (new ConnectToDB().CheckIfLoginIsNew(Login.Text))
+                    try
                     {
-                        if (new ConnectToDB().CheckIfEmailIsNew(Email.Text))
+                        if (new ConnectToDB().CheckIfLoginIsNew(Login.Text))
                         {
-                            if (IsValidEmail(Email.Text))
+                            if (new ConnectToDB().CheckIfEmailIsNew(Email.Text))
                             {
-
-                                if (checkPassword(Password.Text))
+                                if (IsValidEmail(Email.Text))
                                 {
-                                    if (qwe == 0)// сообщение
+
+                                    if (checkPassword(Password.Text))
                                     {
+                                        if (qwe == 0)// сообщение
+                                        {
 
-                                        Code.Visibility = Visibility.Visible;
-                                        TextCode.Visibility = Visibility.Visible;
-                                        Code.IsEnabled = true;
-                                        TextCode.IsEnabled = true;
+                                            Code.Visibility = Visibility.Visible;
+                                            TextCode.Visibility = Visibility.Visible;
+                                            Code.IsEnabled = true;
+                                            TextCode.IsEnabled = true;
 
-                                        UserEmail = Email.Text;
+                                            UserEmail = Email.Text;
 
-                                        string login = "adm1nomsystem453@mail.ru";
-                                        string pasword = "QAaUuNXve9zPQSuv2ncm";
+                                            string login = "adm1nomsystem453@mail.ru";
+                                            string pasword = "QAaUuNXve9zPQSuv2ncm";
 
-                                        // отправитель - устанавливаем адрес и отображаемое в письме имя
-                                        MailAddress from = new MailAddress(login, "Код регистрации");
-                                        // кому отправляем
-                                        MailAddress to = new MailAddress(Email.Text);
-                                        // создаем объект сообщения
-                                        MailMessage m = new MailMessage(from, to);
-                                        // тема письма
-                                        m.Subject = "Регистрация пользователя";
-                                        // текст письма
-                                        m.Body = $"<h2>Ваш код для создания пользователя: {vov}</h2>";
-                                        // письмо представляет код html
-                                        m.IsBodyHtml = true;
-                                        // адрес smtp-сервера и порт, с которого будем отправлять письмо
-                                        string str = "";
-                                        if (login.Contains("@gmail.com")) str = "smtp.gmail.com";
-                                        else if (login.Contains("@mail.ru")) str = "smtp.mail.ru";
-                                        SmtpClient smtp = new SmtpClient(str, 587);
-                                        // логин и пароль
-                                        smtp.Credentials = new NetworkCredential(login, pasword);
-                                        smtp.EnableSsl = true;
-                                        smtp.Send(m);
-                                        //открытие ввода кода
-                                        qwe = 1;
+                                            // отправитель - устанавливаем адрес и отображаемое в письме имя
+                                            MailAddress from = new MailAddress(login, "Код регистрации");
+                                            // кому отправляем
+                                            MailAddress to = new MailAddress(Email.Text);
+                                            // создаем объект сообщения
+                                            MailMessage m = new MailMessage(from, to);
+                                            // тема письма
+                                            m.Subject = "Регистрация пользователя";
+                                            // текст письма
+                                            m.Body = $"<h2>Ваш код для создания пользователя: {vov}</h2>";
+                                            // письмо представляет код html
+                                            m.IsBodyHtml = true;
+                                            // адрес smtp-сервера и порт, с которого будем отправлять письмо
+                                            string str = "";
+                                            if (login.Contains("@gmail.com")) str = "smtp.gmail.com";
+                                            else if (login.Contains("@mail.ru")) str = "smtp.mail.ru";
+                                            SmtpClient smtp = new SmtpClient(str, 587);
+                                            // логин и пароль
+                                            smtp.Credentials = new NetworkCredential(login, pasword);
+                                            smtp.EnableSsl = true;
+                                            smtp.Send(m);
+                                            //открытие ввода кода
+                                            qwe = 1;
+                                        }
+                                        else if (qwe == 1)
+                                        {
+                                            if (Code.Text == Convert.ToString(vov))
+                                            {
+                                                user.Login = Login.Text;
+                                                user.Password = new EncryptAndDecryptClass().Shifrovka(Password.Text, "Aboba");
+                                                user.SecondName = SecondName.Text;
+                                                user.FirstName = FirstName.Text;
+                                                user.Patronymic = Patronymic.Text;
+                                                user.Email = Email.Text;
+                                                user.Role_ID = 1004;
+                                                new ConnectToDB().AddUser(user);
+                                                qwe = 0;
+                                                NavigationService.Navigate(new Authorization());
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Введён неверный код");
+                                            }
+                                        }
                                     }
-                                    else if (qwe == 1)
+                                    else
                                     {
-                                        if (Code.Text == Convert.ToString(vov))
-                                        {
-                                            user.Login = Login.Text;
-                                            user.Password = new EncryptAndDecryptClass().Shifrovka(Password.Text, "Aboba");
-                                            user.SecondName = SecondName.Text;
-                                            user.FirstName = FirstName.Text;
-                                            user.Patronymic = Patronymic.Text;
-                                            user.Email = Email.Text;
-                                            user.Role_ID = 2;
-                                            new ConnectToDB().AddUser(user);
-                                            qwe = 0;
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Введён неверный код");
-                                        }
+                                        MessageBox.Show("Введён слабый пароль");
                                     }
+
+
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Введён слабый пароль");
+                                    MessageBox.Show("Введена неккоректная почта");
                                 }
-
-
                             }
                             else
                             {
-                                MessageBox.Show("Введена неккоректная почта");
+                                MessageBox.Show("Пользователь с такой почтой уже существует");
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Пользователь с такой почтой уже существует");
-                        }
-                    }
 
-                    else
-                    { MessageBox.Show("Пользователь с таким логином уже существует"); }
+                        else
+                        { MessageBox.Show("Пользователь с таким логином уже существует"); }
+                    }
+                    catch (Exception exception) { MessageBox.Show("Что-то пошлно не так. " + exception); }
                 }
-                catch(Exception exception) { MessageBox.Show("Что-то пошлно не так. " + exception); }
+                else MessageBox.Show("Подтвердите согласие на обработку персональных данных");
             
             }
         }
@@ -218,14 +222,15 @@ namespace Canteen.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new ConnectToDB().ClearAbiturient();
+            new ConnectToDB().ClearAbiturient11();
+            new ConnectToDB().ClearAbiturientSPO();
             new ConnectToDB().ClearStudents();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            new ConnectToDB().ClearAbiturient();
+            new ConnectToDB().ClearAbiturientSPO();
+            new ConnectToDB().ClearAbiturient11();
             new ConnectToDB().ClearStudents();
         }
 

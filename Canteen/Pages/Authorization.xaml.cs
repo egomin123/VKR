@@ -68,6 +68,10 @@ namespace Canteen.Pages
                             {
                                 NavigationService.Navigate(new TesterPage(user));
                             }
+                            else if (users1.Role_ID == 1003)
+                            {
+                                NavigationService.Navigate(new TesterPage(user));
+                            }
                         }
                         else if (secondEqual == true && SecondEqual != 1)
                         {
@@ -94,7 +98,6 @@ namespace Canteen.Pages
         {
             NavigationService.Navigate(new Registrarion());
         }
-
-       
+     
     }
 }

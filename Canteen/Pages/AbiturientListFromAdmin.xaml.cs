@@ -38,17 +38,31 @@ namespace Canteen.Pages
             NavigationService.Navigate(new Authorization());
         }
 
-        List<Abiturient> abiturients = new ConnectToDB().GetAbiturient();
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MetricsDataGrid.ItemsSource = abiturients;
-        }
+        
 
         private void HideButton(object sender, RoutedEventArgs e)
         {
             string HidenAbiturient = Hide.Text;
-            if (Hide.Text == "") MetricsDataGrid.ItemsSource = abiturients;
-            else MetricsDataGrid.ItemsSource = new ConnectToDB().GetHidenAbiturient(HidenAbiturient);
+            if (HidenAbiturient == "" || HidenAbiturient == null && SelectedAbiturientsListCB.SelectedIndex == 0)
+                MetricsDataGrid11.ItemsSource = new ConnectToDB().GetHidenAbiturient11(HidenAbiturient);
+            else if (HidenAbiturient == "" || HidenAbiturient == null && SelectedAbiturientsListCB.SelectedIndex == 1)
+                MetricsDataGridSPO.ItemsSource = new ConnectToDB().GetHidenAbiturientSPO(HidenAbiturient);
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SelectedAbiturientsListCB.SelectedIndex == 0)
+            {
+                MetricsDataGridSPO.Margin = new Thickness(1000, 1000, 0, 0);
+                MetricsDataGrid11.Margin = new Thickness(3, 73.8, 6.6, 17.4);
+                MetricsDataGrid11.ItemsSource = new ConnectToDB().GetAbiturient11();
+            }
+            else if (SelectedAbiturientsListCB.SelectedIndex == 1)
+            {
+                MetricsDataGrid11.Margin = new Thickness(1000, 1000, 0, 0);
+                MetricsDataGridSPO.Margin = new Thickness(3, 73.8, 6.6, 17.4);
+                MetricsDataGridSPO.ItemsSource = new ConnectToDB().GetAbiturientSPO();
+            }
         }
     }
 }

@@ -26,7 +26,8 @@ namespace Canteen.Pages
         {
             InitializeComponent();
             MainUser = user;
-           
+            new ConnectToDB().DeleteEmptyQuestion();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -28,10 +28,11 @@ namespace Canteen.Pages
             InitializeComponent();
             MainUser = user;
             LoginBlock.Header = user.Login;
-            students = new ConnectToDB().HowMuchStudents();
-            HowMushStesentsText.Text = ("Количество студентов: " + Convert.ToString(students));
+            
+            DirectionCB.ItemsSource = Directions;
         }
 
+        List<String> Directions = new ConnectToDB().GetDirectionsForCB();
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Authorization());
@@ -44,12 +45,15 @@ namespace Canteen.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int ID_Direction = new ConnectToDB().GetDirectionsIDFromCB(DirectionCB.Text);
             double equal =  students/ Convert.ToInt32(HowMuchGroupBox.Text);
             if (equal < 2)
                 MessageBox.Show("слишком много групп");
             else
-                NavigationService.Navigate(new StudentsWithGroup(MainUser, Convert.ToDouble(HowMuchGroupBox.Text)));
-
+            {
+                new ConnectToDB().StudentsOnGroup(Convert.ToInt32(HowMuchGroupBox.Text), ID_Direction);
+                NavigationService.Navigate(new StudentsWithGroup(MainUser, Convert.ToInt32(HowMuchGroupBox.Text)));
+            }
 ;
         }
 
@@ -57,6 +61,13 @@ namespace Canteen.Pages
         {
 
             NavigationService.Navigate(new MainPage(MainUser));
+        }
+
+        private void DirectionCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int ID_Direction = new ConnectToDB().GetDirectionsIDFromCB(Convert.ToString(DirectionCB.SelectedValue));
+            students = new ConnectToDB().HowMuchStudentsWithDirectionID(ID_Direction);
+            HowMushStesentsText.Text = ("Количество студентов: " + Convert.ToString(students));
         }
     }
 }

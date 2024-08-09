@@ -30,7 +30,6 @@ namespace Canteen.Pages
             LoginBlock.Header = MainUser.Login;
             GroupEqual = equal;
             int students = new ConnectToDB().HowMuchStudents();
-            new ConnectToDB().StudentsOnGroup(GroupEqual);
         }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)

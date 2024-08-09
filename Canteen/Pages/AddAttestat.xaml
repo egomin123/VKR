@@ -30,13 +30,13 @@
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}" />
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}"/>
-                <DataGridTextColumn Header="Аттестат" Binding="{Binding Attestat}"/>
+                <DataGridTextColumn Header="Баллы ЕГЭ" Binding="{Binding EGE}"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left"   Margin="127,29,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Список абитуриентов" VerticalAlignment="Top" Height="55" Width="393" Grid.ColumnSpan="2"/>
         <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
         <Button Content="Изменить" HorizontalAlignment="Left" Margin="208.2,195,0,0" VerticalAlignment="Top" Width="206"  Grid.Column="1" Click="Edit_Attestat"/>
         <TextBox Grid.Column="1" Name="AttestatTB"  HorizontalAlignment="Left" Height="23" Margin="207.2,166,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="205"/>
-        <Label Content="Аттестат" Foreground="Black" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Left" Margin="209.2,130,0,0" VerticalAlignment="Top" Width="203"/>
+        <Label Content="Баллы ЕГЭ" Foreground="Black" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Left" Margin="209.2,130,0,0" VerticalAlignment="Top" Width="203"/>
     </Grid>
 </Page>

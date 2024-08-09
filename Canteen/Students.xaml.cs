@@ -66,7 +66,7 @@ namespace Canteen
             workSheet[$"G{1}"].Value = "Почта";
             workSheet[$"H{1}"].Value = "Серия паспорта";
             workSheet[$"I{1}"].Value = "Номер паспорта";
-            workSheet[$"J{1}"].Value = "Аттестат";
+            workSheet[$"J{1}"].Value = "Код направления";
             workSheet[$"K{1}"].Value = "Номер группы";
             foreach (Student student in students)
             {
@@ -79,7 +79,7 @@ namespace Canteen
                 workSheet[$"G{NomerKoloncki}"].Value = student.Email;
                 workSheet[$"H{NomerKoloncki}"].Value = student.SeriaPassport;
                 workSheet[$"I{NomerKoloncki}"].Value = student.NumberPasport;
-                workSheet[$"J{NomerKoloncki}"].Value = student.Attestat;
+                workSheet[$"J{NomerKoloncki}"].Value = student.ID_Direction;
                 workSheet[$"K{NomerKoloncki}"].Value = student.GroupNumber;
                 NomerKoloncki++;
             }

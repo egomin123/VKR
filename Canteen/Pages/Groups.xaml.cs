@@ -45,7 +45,7 @@ namespace Canteen.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string Path = (Directory.GetCurrentDirectory() + "\\Группа " + Convert.ToString(GroupCB.SelectedValue) + ".xlsx");
+            string Path = (Directory.GetCurrentDirectory() + "\\" + Convert.ToString(GroupCB.Text) + ".xlsx");
             try
             {
                 
@@ -53,7 +53,7 @@ namespace Canteen.Pages
                 workBook.SaveAs(Path);
                 WorkSheet workSheet = workBook.DefaultWorkSheet;
                 int NomerKoloncki = 3;
-                workSheet[$"A{1}"].Value = "Группа " + Convert.ToString(GroupCB.SelectedValue);
+                workSheet[$"A{1}"].Value = "" + Convert.ToString(GroupCB.SelectedValue);
                 workSheet[$"A{2}"].Value = "Фамилия";
                 workSheet[$"B{2}"].Value = "Имя";
                 workSheet[$"C{2}"].Value = "Отчество";
@@ -62,7 +62,7 @@ namespace Canteen.Pages
                 workSheet[$"F{2}"].Value = "Почта";
                 workSheet[$"G{2}"].Value = "Серия паспорта";
                 workSheet[$"H{2}"].Value = "Номер паспорта";
-                workSheet[$"I{2}"].Value = "Аттестат";
+                workSheet[$"I{2}"].Value = "Код направления";
                 workSheet[$"J{2}"].Value = "Номер группы";
                 foreach (Student student in students)
                 {
@@ -74,7 +74,7 @@ namespace Canteen.Pages
                     workSheet[$"F{NomerKoloncki}"].Value = student.Email;
                     workSheet[$"G{NomerKoloncki}"].Value = student.SeriaPassport;
                     workSheet[$"H{NomerKoloncki}"].Value = student.NumberPasport;
-                    workSheet[$"I{NomerKoloncki}"].Value = student.Attestat;
+                    workSheet[$"I{NomerKoloncki}"].Value = student.ID_Direction;
                     workSheet[$"J{NomerKoloncki}"].Value = student.GroupNumber;
                     NomerKoloncki++;
                 }

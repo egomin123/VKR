@@ -54,7 +54,7 @@ namespace Canteen.Pages
                     string pasword = "QAaUuNXve9zPQSuv2ncm";
 
                     // отправитель - устанавливаем адрес и отображаемое в письме имя
-                    MailAddress from = new MailAddress(login, "Код авторизации");
+                    MailAddress from = new MailAddress(login, "Код восстановления пароля");
                     // кому отправляем
                     MailAddress to = new MailAddress(Email.Text);
                     // создаем объект сообщения

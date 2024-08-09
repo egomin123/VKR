@@ -43,22 +43,31 @@ namespace Canteen.Pages
             MetricsDataGrid.ItemsSource = abiturients;
         }
 
-        List<Abiturient> abiturients = new ConnectToDB().GetAbiturient();
+        List<Abiturient11> abiturients = new ConnectToDB().GetAbiturient11();
             
 
         private void HideButton(object sender, RoutedEventArgs e)
         {
 
             if (Hide.Text == "") MetricsDataGrid.ItemsSource = abiturients;
-            else MetricsDataGrid.ItemsSource = new ConnectToDB().GetHidenTest(Hide.Text);
+            else MetricsDataGrid.ItemsSource = new ConnectToDB().GetHidenAbiturient11(Hide.Text);
             }
 
         private void Edit_Attestat(object sender, RoutedEventArgs e)
         {
-            int ID_Abiturient = abiturients[MetricsDataGrid.SelectedIndex].ID_User;
-            new ConnectToDB().EditAbiturientAttestat(ID_Abiturient,AttestatTB.Text);
-            abiturients = new ConnectToDB().GetAbiturient();
-            MetricsDataGrid.ItemsSource = abiturients;
+            try
+            {
+                if (AttestatTB.Text == "" || AttestatTB.Text == null) MessageBox.Show("Введите баллы ЕГЭ");
+                else
+                {
+                    int ID_Abiturient = abiturients[MetricsDataGrid.SelectedIndex].ID_Abiturient;
+                    new ConnectToDB().EditAbiturientEGE(ID_Abiturient, AttestatTB.Text);
+                    abiturients = new ConnectToDB().GetAbiturient11();
+                    MetricsDataGrid.ItemsSource = abiturients;
+                }
+            }
+            catch { MessageBox.Show("Выберите абитуриента"); } 
+            
         }
     }
 }

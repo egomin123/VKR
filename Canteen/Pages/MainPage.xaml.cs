@@ -39,13 +39,14 @@ namespace Canteen.Pages
 
         private void MyProfile_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new Profile(MainUser));
         }
+        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-
+            
             timer.Tick += new EventHandler(timerTick);
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
@@ -93,6 +94,7 @@ namespace Canteen.Pages
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new Authorization());
         }
 
@@ -128,9 +130,11 @@ namespace Canteen.Pages
             {
                 case 1:
                     //NavigationService.Navigate(new BookATable(MainUser));
+                    timer.Stop();
                     NavigationService.Navigate(new HowMuchGetAbiturientsOnStudentPage(MainUser));
                     break;
                 case 2:
+                    timer.Stop();
                     NavigationService.Navigate(new HowMuchGroups(MainUser));
                     break;
             }
@@ -138,26 +142,31 @@ namespace Canteen.Pages
 
         private void Go_To_Page1(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new AbiturientList(MainUser));
         }
 
         private void Go_To_Page2(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new Students(MainUser));
         }
 
         private void Go_To_Group(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new Groups(MainUser));
         }
 
         private void Go_To_Direction(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new DirectionListPage(MainUser));
         }
 
         private void Add_Attestat(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NavigationService.Navigate(new AddAttestat(MainUser));
         }
     }

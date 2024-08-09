@@ -31,10 +31,10 @@ namespace Canteen.Pages
         private void HideButton(object sender, RoutedEventArgs e)
         {
             if (Hide.Text == "") MetricsDataGrid.ItemsSource = abiturients;
-            else MetricsDataGrid.ItemsSource = new ConnectToDB().GetHidenTest(Hide.Text);
+            else MetricsDataGrid.ItemsSource = new ConnectToDB().GetHidenAbiturientSPO(Hide.Text);
 
         }
-        List<Abiturient> abiturients = new ConnectToDB().GetAbiturient();
+        List<AbiturientSPO> abiturients = new ConnectToDB().GetAbiturientSPO();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

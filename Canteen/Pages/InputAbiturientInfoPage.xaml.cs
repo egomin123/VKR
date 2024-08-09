@@ -30,31 +30,36 @@ namespace Canteen.Pages
 
         private void Registrate(object sender, RoutedEventArgs e)
         {
-            Abiturient abiturient = new Abiturient();
-            abiturient.SecondName = SecondNameTB.Text;
-            abiturient.FirstName = FirstNameTB.Text;
-            abiturient.Patronymic = PatronymicTB.Text;
-            abiturient.DateOfBirth = DateOfBitrhDP.DisplayDate;
-            abiturient.PhoneNumber = TelephoneNumberTB.Text;
-            abiturient.Email = EmainTB.Text;
-            abiturient.NumberPasport = Convert.ToInt32(NumberPassportTB.Text);
-            abiturient.SeriaPassport = Convert.ToInt32(SeriesPassportTB.Text);
-            abiturient.Attestat = "0";
-            abiturient.FirstDirectionBall = 0;
-            abiturient.SecondDirectionBall = 0;
-            abiturient.ThiredDerictionBall = 0;
-            
-            int ID_FirstDirection = new ConnectToDB().GetDirectionsIDFromCB(FirstDirection.Text);
-            int ID_SecondDirection = new ConnectToDB().GetDirectionsIDFromCB(SecondDirecton.Text);
-            int ID_ThiredDirection = new ConnectToDB().GetDirectionsIDFromCB(ThirdDirection.Text);
-            abiturient.ID_FirstDirection = ID_FirstDirection;
-            abiturient.ID_SecondDirection = ID_SecondDirection;
-            abiturient.ID_ThiredDeriction = ID_ThiredDirection;
-            new ConnectToDB().AddAbiturient(abiturient);
-            int CompletedTest = 0;
-            abiturient.ID_User = new ConnectToDB().GetIDAbiturientByLoginForButton(abiturient.Email, abiturient.PhoneNumber);
-            NavigationService.Navigate(new StartTestPage(MainUser, abiturient, ID_FirstDirection, ID_SecondDirection, ID_ThiredDirection, CompletedTest));
+            if (PersonalInfoCB.IsChecked == false)
+            {
+                MessageBox.Show("Подтвердите согласие на обработку персональных данных");
+            }
+            else
+            {
+                AbiturientSPO abiturient = new AbiturientSPO();
+                abiturient.SecondName = SecondNameTB.Text;
+                abiturient.FirstName = FirstNameTB.Text;
+                abiturient.Patronymic = PatronymicTB.Text;
+                abiturient.DateOfBirth = DateOfBitrhDP.DisplayDate;
+                abiturient.PhoneNumber = TelephoneNumberTB.Text;
+                abiturient.Email = EmainTB.Text;
+                abiturient.NumberPasport = Convert.ToInt32(NumberPassportTB.Text);
+                abiturient.SeriesPasport = Convert.ToInt32(SeriesPassportTB.Text);
+                abiturient.FirstDirectionBall = 0;
+                abiturient.SecondDirectionBall = 0;
+                abiturient.ThiredDerictionBall = 0;
 
+                int ID_FirstDirection = new ConnectToDB().GetDirectionsIDFromCB(FirstDirection.Text);
+                int ID_SecondDirection = new ConnectToDB().GetDirectionsIDFromCB(SecondDirecton.Text);
+                int ID_ThiredDirection = new ConnectToDB().GetDirectionsIDFromCB(ThirdDirection.Text);
+                abiturient.ID_FirstDirection = ID_FirstDirection;
+                abiturient.ID_SecondDirection = ID_SecondDirection;
+                abiturient.ID_ThiredDeriction = ID_ThiredDirection;
+                new ConnectToDB().AddAbiturientSPO(abiturient);
+                int CompletedTest = 0;
+                abiturient.ID_Abiturient = new ConnectToDB().GetIDAbiturientSPOByLoginForButton(abiturient.Email, abiturient.PhoneNumber);
+                NavigationService.Navigate(new StartTestPage(MainUser, abiturient, ID_FirstDirection, ID_SecondDirection, ID_ThiredDirection, CompletedTest));
+            }
                 // 
         }
 

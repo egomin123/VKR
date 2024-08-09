@@ -12,7 +12,28 @@ namespace Canteen.Classes
     public class ConnectToDB
     {
         // Строка подключения
-        public string ConnectionString { get; set; } = @"Persist Security Info=False;User ID=Last;Password=123123;Initial Catalog=Delfin;Data Source=LAPTOP-DOAF05I7";
+        public string ConnectionString { get; set; } = @"Persist Security Info=False;User ID=Last1;Password=123456;Initial Catalog=Delfin;Data Source=LAPTOP-DOAF05I7";
+
+        public void DoCommand(string request)
+        {
+           
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(ConnectionString))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(request, conn);
+                        cmd.ExecuteScalar();
+                        conn.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                  //  MessageBox.Show($"Ошибка: " + ex);
+                }
+           
+        }
+
 
         public User GetUsersByLoginForButton(string UserLogin)
         {
@@ -39,52 +60,114 @@ namespace Canteen.Classes
             }
         }
 
-        public Abiturient GetAbiturientByID(int ID)
+
+        public void AddQuestion(Question question)
         {
-            string command = "USE Canteen " + $"select* from Abiturient WHERE ID_Abiturient = {ID}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            int NumberTest = 0;
+            string Command = "USE Canteen " + $"EXEC [dbo].AddQuestion '{question.QuestionString}','{question.A}','{question.B}','{question.C}','{question.D}','{question.Answer}','{NumberTest}','{question.QuestionType}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
-                Abiturient abiturient = new Abiturient();
+                conn.Open();
+                SqlCommand Command1 = new SqlCommand(Command, conn);
+                Command1.ExecuteScalar();
+                conn.Close();
+            }
+        }
+
+        public AbiturientSPO GetAbiturientSPOByID(int ID)
+        {
+            string command = "USE Canteen " + $"select* from AbiturientSPO WHERE ID_Abiturient = {ID}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                AbiturientSPO abiturient = new AbiturientSPO();
                 conn.Open();
                 SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                 while (reader.Read())
                 {
-                    abiturient.ID_User = reader.GetInt32(0);
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
                     abiturient.SecondName = reader.GetString(1); 
                     abiturient.FirstName = reader.GetString(2); 
                     abiturient.Patronymic = reader.GetString(3); 
-                    abiturient.DateOfBirth = reader.GetDateTime(4); 
-                    abiturient.PhoneNumber = reader.GetString(5); 
-                    abiturient.Email = reader.GetString(6); 
-                    abiturient.SeriaPassport = reader.GetInt32(7); 
+                    abiturient.DateOfBirth = reader.GetDateTime(4);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6); 
+                    abiturient.SeriesPasport = reader.GetInt32(7); 
                     abiturient.NumberPasport = reader.GetInt32(8); 
-                    abiturient.Attestat = reader.GetString(9); 
-                    abiturient.FirstDirectionBall = reader.GetInt32(10); 
-                    abiturient.SecondDirectionBall = reader.GetInt32(11); 
-                    abiturient.ThiredDerictionBall = reader.GetInt32(12); 
-                    abiturient.ID_FirstDirection = reader.GetInt32(13);
-                    abiturient.ID_SecondDirection = reader.GetInt32(14); 
-                    abiturient.ID_ThiredDeriction = reader.GetInt32(15); 
+                    abiturient.FirstDirectionBall = reader.GetInt32(9); 
+                    abiturient.SecondDirectionBall = reader.GetInt32(10); 
+                    abiturient.ThiredDerictionBall = reader.GetInt32(11); 
+                    abiturient.ID_FirstDirection = reader.GetInt32(12);
+                    abiturient.ID_SecondDirection = reader.GetInt32(13); 
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(14); 
                 }
                 reader.Close();
                 conn.Close();
                 return abiturient;
             }
         }
-
-        public int GetIDAbiturientByLoginForButton(string Email, string PhoneNumber)
+        public Abiturient11 GetAbiturient11ByID(int ID)
         {
-            string command = "USE Canteen " + $"select* from Abiturient WHERE Email = '{Email}' AND PhoneNumber = '{PhoneNumber}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
-            int ID = 0;
+            string command = "USE Canteen " + $"select* from Abiturient11 WHERE ID_Abiturient = {ID}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
-                Abiturient abiturient = new Abiturient();
+                Abiturient11 abiturient = new Abiturient11();
                 conn.Open();
                 SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                 while (reader.Read())
                 {
-                    abiturient.ID_User = reader.GetInt32(0);
-                    ID = abiturient.ID_User;
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    abiturient.SecondName = reader.GetString(1);
+                    abiturient.FirstName = reader.GetString(2);
+                    abiturient.Patronymic = reader.GetString(3);
+                    abiturient.DateOfBirth = reader.GetDateTime(4);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
+                    abiturient.NumberPasport = reader.GetInt32(8);
+                    abiturient.EGE = reader.GetString(9);
+                    abiturient.ID_FirstDirection = reader.GetInt32(10);
+                    abiturient.ID_SecondDirection = reader.GetInt32(11);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(12);
+                }
+                reader.Close();
+                conn.Close();
+                return abiturient;
+            }
+        }
+        public int GetIDAbiturientSPOByLoginForButton(string Email, string PhoneNumber)
+        {
+            string command = "USE Canteen " + $"select* from AbiturientSPO WHERE Email = '{Email}' AND PhoneNumber = '{PhoneNumber}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            int ID = 0;
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                AbiturientSPO abiturient = new AbiturientSPO();
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    ID = abiturient.ID_Abiturient;
+                }
+                reader.Close();
+                conn.Close();
+                return ID;
+            }
+        }
+
+
+        public int GetIDAbiturient11ByLoginForButton(string Email, string PhoneNumber)
+        {
+            string command = "USE Canteen " + $"select* from Abiturient11 WHERE Email = '{Email}' AND PhoneNumber = '{PhoneNumber}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            int ID = 0;
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                Abiturient11 abiturient = new Abiturient11();
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    ID = abiturient.ID_Abiturient;
                 }
                 reader.Close();
                 conn.Close();
@@ -289,35 +372,57 @@ namespace Canteen.Classes
         }
 
 
-
-        public List<Student> StudentsOnGroup(double HowMuchGroup)
+        public int GetGroupName()
         {
-            //Проверка коммита
+            int GroupInt = 1;
+            string Group = "Группа " + GroupInt;
+            
+            while (true)
+            {
+                int Test = 0;
+                string Command = "Use Canteen " + $"Select *from students WHERE GroupNumber = '{Group}'";
+                using (System.Data.SqlClient.SqlConnection conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+                    SqlDataReader reader = new SqlCommand(Command, conn).ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Test++;
+                    }
+                    if (Test != 0)
+                    {
+                        GroupInt++;
+                        Group =  "Группа " + GroupInt;
+                    }
+                    else
+                    {
+                        
+                        break;
+                    }
+                }
+            }
+            return GroupInt;
+        }
+        public List<Student> StudentsOnGroup(int HowMuchGroup, int ID_Direction)
+        {
             int AddStudent = 0; // скольким студентам дали группу
             int equal = 0;
+            int CreatedGroups = 0;
+            List<Student> StudentsWithoutGroup = GetStudentByDirectionID(ID_Direction); // список студентов, которым буду выдавать группу
+            int howmuchStudents = new ConnectToDB().HowMuchStudentsWithDirectionID(ID_Direction); // Их кКоличество в БД
+            int HowStudentsNeedInGroup = howmuchStudents / HowMuchGroup; // Сколько человек должно быть в группе
+
+            int ewq = HowStudentsNeedInGroup * HowMuchGroup;
+            if (ewq != howmuchStudents) HowStudentsNeedInGroup++;
+            int Group = GetGroupName(); // свободный номер группы
+
+
             
-            List<Student> StudentsWithoutGroup = GetStudent(); // студенты,в БД которых буду менять
-            double howmuchStudents = new ConnectToDB().HowMuchStudents(); // Количество студентов в БД
-            double qwe = howmuchStudents / HowMuchGroup; // количество студентов в одной группе
-            int ewq = 0; // сколько студентов уже добавил в эту группу
-            int IDStudent = 1;
-            int Group = 1;
-            var isNumeric = int.TryParse(Convert.ToString(ewq), out int n);
-
-            if (isNumeric == true)
+            foreach (Student sudents in StudentsWithoutGroup) // у меня есть список из 10 студентов, нужно дать им 3 группы
             {
-                equal = 0;// если студенты нормально делятся по группам, без остатка, то всё хорошо
-            }
-            else
-            {
-                equal = 1; // если студенты делятся не поровну в группах, то делаю переменную для "гуляющего" студента
-            }
-            while(AddStudent < howmuchStudents)
-            {
-                int ff = 0;
-                if (ewq < qwe) // если студентов в группе не хватает, то добавляю туда ещё одного
+                if (HowStudentsNeedInGroup > 0 && AddStudent < howmuchStudents) // 2 > 0 && 0 < 9
                 {
-                    string command = "USE Canteen " + $"EXEC [dbo].EditStudentGroup '{Group}', {IDStudent}";
+                    string command = "USE Canteen " + $"EXEC [dbo].EditStudentGroup 'Группа {Group}', {sudents.ID_User}";
                     using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
                     {
                         conn.Open();
@@ -325,37 +430,32 @@ namespace Canteen.Classes
                         command2.ExecuteScalar();
                         conn.Close();
                     }
-                    IDStudent++;
+                    HowStudentsNeedInGroup--;
                     AddStudent++;
-                    ewq++;
-                }
-                else if (equal == 1 && ff ==0)
-                {
-
-                    string command = "USE Canteen " + $"EXEC [dbo].EditStudentGroup '{Group}', {IDStudent}";
-                    using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
-                    {
-                        conn.Open();
-                        SqlCommand command2 = new SqlCommand(command, conn);
-                        command2.ExecuteScalar();
-                        conn.Close();
-                    }
-                    IDStudent++;
-                    AddStudent++;
-                    ff = 1;
-                    ewq++;
                 }
                 else
                 {
-                    Group++;
-                    ff = 0;
-                    ewq = 0;
+                    HowStudentsNeedInGroup = howmuchStudents / HowMuchGroup;
+                    CreatedGroups++;
+                    howmuchStudents = new ConnectToDB().HowMuchStudentsWithDirectionID(ID_Direction);
+                    if (CreatedGroups != HowMuchGroup)
+                    {
+                        Group = GetGroupName();
+                    }
+                    if ( AddStudent < howmuchStudents)
+                    {
+                        string command = "USE Canteen " + $"EXEC [dbo].EditStudentGroup 'Группа {Group}', {sudents.ID_User}";
+                        using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+                        {
+                            conn.Open();
+                            SqlCommand command2 = new SqlCommand(command, conn);
+                            command2.ExecuteScalar();
+                            conn.Close();
+                        }
+                        HowStudentsNeedInGroup--;
+                        AddStudent++;
+                    }
                 }
-
-
-               
-                
-                
             }
 
             List<Student> studeents = new ConnectToDB().GetStudent(); // таблица, которую я выведу в Xaml
@@ -395,7 +495,7 @@ namespace Canteen.Classes
         public List<Student> GetHidenStudent(string HidenAbiturient)
         {
             string command = "USE Canteen " + $"select* from Students WHERE SecondName = '{HidenAbiturient}' or FirstName = '{HidenAbiturient}' or Patronymic = '{HidenAbiturient}' or Email = '{HidenAbiturient}' or PhoneNumber = '{HidenAbiturient}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
-            List<Student> user = new List<Student>();
+            List<Student> students = new List<Student>();
 
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
@@ -404,26 +504,26 @@ namespace Canteen.Classes
                 SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                 while (reader.Read())
                 {
-                    Student abiturient = new Student();
-                    abiturient.ID_User = reader.GetInt32(0);
-                    abiturient.SecondName = reader.GetString(1);
-                    abiturient.FirstName = reader.GetString(2);
-                    abiturient.Patronymic = reader.GetString(3);
-                    abiturient.DateOfBirth = reader.GetDateTime(4);
-                    abiturient.PhoneNumber = reader.GetString(5);
-                    abiturient.Email = reader.GetString(6);
-                    abiturient.SeriaPassport = reader.GetInt32(7);
-                    abiturient.NumberPasport = reader.GetInt32(8);
-                    abiturient.Attestat = reader.GetString(9);
-                    abiturient.GroupNumber = reader.GetString(10);
+                    Student student = new Student();
+                    student.ID_User = reader.GetInt32(0);
+                    student.SecondName = reader.GetString(1);
+                    student.FirstName = reader.GetString(2);
+                    student.Patronymic = reader.GetString(3);
+                    student.DateOfBirth = reader.GetDateTime(4);
+                    student.PhoneNumber = reader.GetString(5);
+                    student.Email = reader.GetString(6);
+                    student.SeriaPassport = reader.GetInt32(7);
+                    student.NumberPasport = reader.GetInt32(8);
+                    student.ID_Direction = reader.GetInt32(9);
+                    student.GroupNumber = reader.GetString(10);
 
 
 
-                    user.Add(abiturient);
+                    students.Add(student);
                 }
                 reader.Close();
                 conn.Close();
-                return user;
+                return students;
 
             }
         }
@@ -453,10 +553,10 @@ namespace Canteen.Classes
             }
         }
 
-        public List<Abiturient> GetHidenAbiturient(string HidenAbiturient)
+        public List<Abiturient11> GetHidenAbiturient11(string HidenAbiturient)
         {
-            string command = "USE Canteen " + $"select* from Abiturient WHERE SecondName = '{HidenAbiturient}' or FirstName = '{HidenAbiturient}' or PhoneNumber = '{HidenAbiturient}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
-            List<Abiturient> user = new List<Abiturient>();
+            string command = "USE Canteen " + $"select* from Abiturient11 WHERE SecondName = '{HidenAbiturient}' or FirstName = '{HidenAbiturient}' or PhoneNumber = '{HidenAbiturient}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            List<Abiturient11> user = new List<Abiturient11>();
 
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
@@ -465,24 +565,21 @@ namespace Canteen.Classes
                     SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                     while (reader.Read())
                     {
-                        Abiturient abiturient = new Abiturient();
-                        abiturient.ID_User = reader.GetInt32(0);
-                        abiturient.SecondName = reader.GetString(1);
-                        abiturient.FirstName = reader.GetString(2);
-                        abiturient.Patronymic = reader.GetString(3);
-                        abiturient.DateOfBirth = reader.GetDateTime(4);
-                        abiturient.PhoneNumber = reader.GetString(5);
-                        abiturient.Email = reader.GetString(6);
-                        abiturient.SeriaPassport = reader.GetInt32(7);
-                        abiturient.NumberPasport = reader.GetInt32(8);
-                        abiturient.Attestat = reader.GetString(9);
-                        abiturient.FirstDirectionBall = reader.GetInt32(10);
-                        abiturient.SecondDirectionBall = reader.GetInt32(11);
-                        abiturient.ThiredDerictionBall = reader.GetInt32(12);
-                        abiturient.ID_FirstDirection = reader.GetInt32(13);
-                        abiturient.ID_SecondDirection = reader.GetInt32(14);
-                        abiturient.ID_ThiredDeriction = reader.GetInt32(15);
-                        user.Add(abiturient);
+                        Abiturient11 abiturient = new Abiturient11();
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    abiturient.SecondName = reader.GetString(1);
+                    abiturient.FirstName = reader.GetString(2);
+                    abiturient.Patronymic = reader.GetString(3);
+                    abiturient.DateOfBirth = reader.GetDateTime(4);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
+                    abiturient.NumberPasport = reader.GetInt32(8);
+                    abiturient.EGE = reader.GetString(9);
+                    abiturient.ID_FirstDirection = reader.GetInt32(10);
+                    abiturient.ID_SecondDirection = reader.GetInt32(11);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(12);
+                    user.Add(abiturient);
                     }
                     reader.Close();
                     conn.Close();
@@ -491,12 +588,51 @@ namespace Canteen.Classes
             }
         }
 
-        public void AddAbiturients(List<Abiturient> abiturients)
+
+        public List<AbiturientSPO> GetHidenAbiturientSPO(string HidenAbiturient)
+        {
+            string command = "USE Canteen " + $"select* from AbiturientSPO WHERE SecondName = '{HidenAbiturient}' or FirstName = '{HidenAbiturient}' or PhoneNumber = '{HidenAbiturient}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            List<AbiturientSPO> user = new List<AbiturientSPO>();
+
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    AbiturientSPO abiturient = new AbiturientSPO();
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    abiturient.SecondName = reader.GetString(1);
+                    abiturient.FirstName = reader.GetString(2);
+                    abiturient.Patronymic = reader.GetString(3);
+                    abiturient.DateOfBirth = reader.GetDateTime(4);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
+                    abiturient.NumberPasport = reader.GetInt32(8);
+                    abiturient.FirstDirectionBall = reader.GetInt32(9);
+                    abiturient.SecondDirectionBall = reader.GetInt32(10);
+                    abiturient.ThiredDerictionBall = reader.GetInt32(11);
+                    abiturient.ID_FirstDirection = reader.GetInt32(12);
+                    abiturient.ID_SecondDirection = reader.GetInt32(13);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(14);
+                    user.Add(abiturient);
+                }
+                reader.Close();
+                conn.Close();
+                return user;
+
+            }
+        }
+
+
+        public void AddAbiturients11(List<Abiturient11> abiturients)
         {
 
-            foreach (Abiturient abiturient in abiturients)
+            foreach (Abiturient11 abiturient in abiturients)
             {
-                string command = "USE Canteen " + $"EXEC [dbo].AddAbiturients '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', '{abiturient.SeriaPassport}', '{abiturient.NumberPasport}', '{abiturient.Attestat}'";
+                string command = "USE Canteen " + $"EXEC [dbo].AddAbiturient11 '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}','{abiturient.Email}', '{abiturient.PhoneNumber}', '{abiturient.SeriesPasport}', '{abiturient.NumberPasport}', '{abiturient.EGE}', '{abiturient.ID_FirstDirection}', '{abiturient.ID_SecondDirection}', '{abiturient.ID_ThiredDeriction}'";
                
                     using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
                     {
@@ -510,39 +646,157 @@ namespace Canteen.Classes
             
         
         }
-        public void AddStudentsFromAbiturients(List<Abiturient> abiturients, int equal)
+
+        public void AddAbiturientsSPO(List<AbiturientSPO> abiturients)
         {
-            int qwe = 0;
-            foreach (Abiturient abiturient in abiturients)
+
+            foreach (AbiturientSPO abiturient in abiturients)
             {
-                if (qwe < equal)
+                string command = "USE Canteen " + $"EXEC [dbo].AddAbiturient11 '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}','{abiturient.PhoneNumber}','{abiturient.Email}', '{abiturient.SeriesPasport}' '{abiturient.NumberPasport}', '{abiturient.FirstDirectionBall}','{abiturient.SecondDirectionBall}','{abiturient.ThiredDerictionBall}', '{abiturient.ID_FirstDirection}', '{abiturient.ID_SecondDirection}', '{abiturient.ID_ThiredDeriction}'";
+
+                using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
                 {
-                    string command = "USE Canteen " + $"EXEC [dbo].AddStudentsFromAbiturients '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', '{abiturient.SeriaPassport}', '{abiturient.NumberPasport}', '{abiturient.Attestat}','0'";
-
-                    using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
-                    {
-                        conn.Open();
-                        SqlCommand command1 = new SqlCommand(command, conn);
-                        command1.ExecuteScalar();
-                        conn.Close();
-                    }
-                    string command3 = "USE Canteen " + $"EXEC [dbo].DeleteAbiturient '{abiturient.ID_User}'";
-
-                    using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
-                    {
-                        conn.Open();
-                        SqlCommand command1 = new SqlCommand(command3, conn);
-                        command1.ExecuteScalar();
-                        conn.Close();
-                    }
-                    qwe++;
+                    conn.Open();
+                    SqlCommand command1 = new SqlCommand(command, conn);
+                    command1.ExecuteScalar();
+                    conn.Close();
                 }
-                else break;
 
             }
-
-
         }
+
+
+
+        public void AddStudentsFromAbiturients(List<Abiturient11> abiturients11, List<AbiturientSPO> abiturientsSPO, int ID_Direction, int equal)
+        {
+            string NumberGroup = "Не распред"; // записывается в переменную группы студента
+            int NumberStudentsCanBeAccepted = GetHowStudentsCanBeInGroupByID(ID_Direction) - GetHowMuchStudentInGroup(ID_Direction); // сколько человек ещё можно принять на направление          
+            int HowMuchStudentAreAccepted = 0; // колличество принятых студентов
+            try
+            {
+                try 
+                {
+                    NumberStudentsCanBeAccepted = NumberStudentsCanBeAccepted / 2; // сколько человек будем брать из каждого списка абитуриентов
+                }
+                catch
+                {
+                    NumberStudentsCanBeAccepted++;
+                    NumberStudentsCanBeAccepted = NumberStudentsCanBeAccepted / 2;
+                }
+            }
+            catch
+            {
+                NumberStudentsCanBeAccepted++;
+                NumberStudentsCanBeAccepted = NumberStudentsCanBeAccepted / 2;
+            }
+            int Nedded11 = 0; // 10
+            int NeddedSPO = 0; 
+            try
+            {
+                // equeal = 9
+                Nedded11 = equal / 2;
+                Nedded11 += Nedded11;
+                if (Nedded11 == equal)
+                {
+                    Nedded11 = Nedded11/2;
+                    NeddedSPO = Nedded11;
+                }
+                else
+                {
+                    string broke = "qweqw";
+                    int Broke1 = Convert.ToInt32(broke);
+                }
+                
+            }
+            catch
+            {
+               
+                equal++;
+                Nedded11 = equal / 2;
+                NeddedSPO = Nedded11 - 1;
+            }
+            int NumberAbiturients11CanAccepted = NumberStudentsCanBeAccepted; // сколько человек максимум возьмём из списка абитуриентов11
+            int NumberAbiturientsSPOCanAccepted = NumberStudentsCanBeAccepted; // сколько человек максимум возьмём из списка абитуриентовСПО
+            while (Nedded11 > 0 || NeddedSPO > 0)
+            {
+                foreach (Abiturient11 abiturient in abiturients11)
+                {
+                    if (Nedded11 != 0 && NumberAbiturients11CanAccepted > 0)
+                    {
+                        string command = "USE Canteen " + $"EXEC [dbo].AddStudentsFromAbiturients '{abiturient.SecondName}', '{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, {ID_Direction}, '{NumberGroup}'";
+                        using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+                        {
+                            conn.Open();
+                            SqlCommand command1 = new SqlCommand(command, conn);
+                            command1.ExecuteScalar();
+                            conn.Close();
+                        }
+                        string command3 = "USE Canteen " + $"EXEC [dbo].DeleteAbiturient11 '{abiturient.ID_Abiturient}'";
+
+                        using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+                        {
+                            conn.Open();
+                            SqlCommand command1 = new SqlCommand(command3, conn);
+                            command1.ExecuteScalar();
+                            conn.Close();
+                        }
+                        NumberAbiturients11CanAccepted--;
+                        Nedded11--;
+                    }
+                    else break;
+                }
+
+                foreach (AbiturientSPO abiturient in abiturientsSPO)
+                {
+                    if (NeddedSPO != 0 && NumberAbiturientsSPOCanAccepted > 0)
+                    {
+                        string command = "USE Canteen " + $"EXEC [dbo].AddStudentsFromAbiturients '{abiturient.SecondName}', '{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, {ID_Direction}, '{NumberGroup}'";
+                        using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+                        {
+                            conn.Open();
+                            SqlCommand command1 = new SqlCommand(command, conn);
+                            command1.ExecuteScalar();
+                            conn.Close();
+                        }
+                        string command3 = "USE Canteen " + $"EXEC [dbo].DeleteAbiturientSPO '{abiturient.ID_Abiturient}'";
+
+                        using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+                        {
+                            conn.Open();
+                            SqlCommand command1 = new SqlCommand(command3, conn);
+                            command1.ExecuteScalar();
+                            conn.Close();
+                        }
+                        NumberAbiturientsSPOCanAccepted--;
+                        NeddedSPO--;
+                    }
+                    else break;
+                }
+
+                if (NeddedSPO > 0)
+                {
+                    Nedded11 += NeddedSPO;
+                    NeddedSPO = 0;
+                }
+                else if (Nedded11 > 0)
+                {
+                    NeddedSPO += Nedded11;
+                    Nedded11 = 0;
+                }
+
+                abiturients11 = GetAbiturient11FromAccepted(ID_Direction);
+                abiturients11.Sort(delegate (Abiturient11 c1, Abiturient11 c2) { return c1.EGE.CompareTo(c2.EGE); });
+                abiturients11.Reverse();
+
+                abiturientsSPO = GetAbiturientSPOFromAccepted(ID_Direction);
+                abiturientsSPO.Sort(delegate (AbiturientSPO c1, AbiturientSPO c2) { return c1.SummBall.CompareTo(c2.SummBall); });
+                abiturientsSPO.Reverse();
+
+
+            }
+        }
+
+
         public void DeleteUser (int ID_User)
         {
             String Command = "Use Canteen " + $"EXEC [dbo].DeleteUser {ID_User}";
@@ -584,11 +838,11 @@ namespace Canteen.Classes
             }
         }
 
-        public void ClearAbiturient()
+        public void ClearAbiturient11()
         {
 
             
-                string command = "USE Canteen " + "TRUNCATE TABLE Abiturient";
+                string command = "USE Canteen " + "TRUNCATE TABLE Abiturient11";
                 using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
                 {
                     conn.Open();
@@ -597,6 +851,21 @@ namespace Canteen.Classes
                     conn.Close();
                 }
            
+        }
+
+        public void ClearAbiturientSPO()
+        {
+
+
+            string command = "USE Canteen " + "TRUNCATE TABLE AbiturientSPO";
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command1 = new SqlCommand(command, conn);
+                command1.ExecuteScalar();
+                conn.Close();
+            }
+
         }
         public void ClearStudents()
         {
@@ -661,33 +930,114 @@ namespace Canteen.Classes
             }
         }
 
-        public List<Abiturient> GetAbiturient()
+        public List<Abiturient11> GetAbiturient11()
         {
-            string command = "USE Canteen " + "select* from Abiturient";
-            List<Abiturient> abiturients = new List<Abiturient>();
+            string command = "USE Canteen " + "select* from Abiturient11";
+            List<Abiturient11> abiturients = new List<Abiturient11>();
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                 while (reader.Read())
                 {
-                    Abiturient abiturient = new Abiturient();
-                    abiturient.ID_User = reader.GetInt32(0);
+                    Abiturient11 abiturient = new Abiturient11();
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
                     abiturient.SecondName = reader.GetString(1);
                     abiturient.FirstName = reader.GetString(2);
                     abiturient.Patronymic = reader.GetString(3);
                     abiturient.DateOfBirth = reader.GetDateTime(4);
-                    abiturient.PhoneNumber = reader.GetString(5);
-                    abiturient.Email = reader.GetString(6);
-                    abiturient.SeriaPassport = reader.GetInt32(7);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
                     abiturient.NumberPasport = reader.GetInt32(8);
-                    abiturient.Attestat = reader.GetString(9);
-                    abiturient.FirstDirectionBall = reader.GetInt32(10);
-                    abiturient.SecondDirectionBall = reader.GetInt32(11);
-                    abiturient.ThiredDerictionBall = reader.GetInt32(12);
-                    abiturient.ID_FirstDirection = reader.GetInt32(13);
-                    abiturient.ID_SecondDirection = reader.GetInt32(14);
-                    abiturient.ID_ThiredDeriction = reader.GetInt32(15);
+                    abiturient.EGE = reader.GetString(9);
+                    abiturient.ID_FirstDirection = reader.GetInt32(10);
+                    abiturient.ID_SecondDirection = reader.GetInt32(11);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(12);
+
+                    abiturient.FirstDirection = GetDirectionName(abiturient.ID_FirstDirection);
+                    abiturient.SecondDirection = GetDirectionName(abiturient.ID_SecondDirection);
+                    abiturient.ThiredDeriction = GetDirectionName(abiturient.ID_ThiredDeriction);
+
+
+
+                    abiturients.Add(abiturient);
+                }
+                reader.Close();
+                conn.Close();
+                return abiturients;
+            }
+        }
+        public List<AbiturientSPO> GetAbiturientSPO()
+        {
+            string command = "USE Canteen " + "select* from AbiturientSPO";
+            List<AbiturientSPO> abiturients = new List<AbiturientSPO>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    AbiturientSPO abiturient = new AbiturientSPO();
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    abiturient.SecondName = reader.GetString(1);
+                    abiturient.FirstName = reader.GetString(2);
+                    abiturient.Patronymic = reader.GetString(3);
+                    abiturient.DateOfBirth = reader.GetDateTime(4);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
+                    abiturient.NumberPasport = reader.GetInt32(8);
+                    abiturient.FirstDirectionBall = reader.GetInt32(9);
+                    abiturient.SecondDirectionBall = reader.GetInt32(10);
+                    abiturient.ThiredDerictionBall = reader.GetInt32(11);
+                    abiturient.ID_FirstDirection = reader.GetInt32(12);
+                    abiturient.ID_SecondDirection = reader.GetInt32(13);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(14);
+
+                    abiturient.FirstDirection = GetDirectionName(abiturient.ID_FirstDirection);
+                    abiturient.SecondDirection = GetDirectionName(abiturient.ID_SecondDirection);
+                    abiturient.ThiredDeriction = GetDirectionName(abiturient.ID_ThiredDeriction);
+
+                    abiturient.SummBall = abiturient.FirstDirectionBall + abiturient.SecondDirectionBall + abiturient.ThiredDerictionBall;
+
+                    abiturients.Add(abiturient);
+                }
+                reader.Close();
+                conn.Close();
+                return abiturients;
+            }
+        }
+
+        public List<Abiturient11> GetAbiturient11FromAccepted(int ID_Direction)
+        {
+            string command = "USE Canteen " + $"select* from Abiturient11 WHERE ID_FirstDirection = {ID_Direction} or ID_SecondDirection = {ID_Direction} or ID_ThiredDirection = {ID_Direction}";
+            List<Abiturient11> abiturients = new List<Abiturient11>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    Abiturient11 abiturient = new Abiturient11();
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
+                    abiturient.SecondName = reader.GetString(1);
+                    abiturient.FirstName = reader.GetString(2);
+                    abiturient.Patronymic = reader.GetString(3);
+                    abiturient.DateOfBirth = reader.GetDateTime(4);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
+                    abiturient.NumberPasport = reader.GetInt32(8);
+                    abiturient.EGE = reader.GetString(9);
+                    abiturient.ID_FirstDirection = reader.GetInt32(10);
+                    abiturient.ID_SecondDirection = reader.GetInt32(11);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(12);
+
+                    abiturient.FirstDirection = GetDirectionName(abiturient.ID_FirstDirection);
+                    abiturient.SecondDirection = GetDirectionName(abiturient.ID_SecondDirection);
+                    abiturient.ThiredDeriction = GetDirectionName(abiturient.ID_ThiredDeriction);
+
 
 
                     abiturients.Add(abiturient);
@@ -698,36 +1048,79 @@ namespace Canteen.Classes
             }
         }
 
-
-        
-        public List<Student> GetStudentWithGroup( string group)
+        public List<AbiturientSPO> GetAbiturientSPOFromAccepted(int ID_Direction)
         {
-            string command = "USE Canteen " + $"select* from Students WHERE GroupNumber = '{group}'";
-            List<Student> abiturients = new List<Student>();
+            string command = "USE Canteen " + $"select* from AbiturientSPO WHERE ID_FirstDirection = {ID_Direction} or ID_SecondDirection = {ID_Direction} or ID_ThiredDirection = {ID_Direction}";
+            List<AbiturientSPO> abiturients = new List<AbiturientSPO>();
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                 while (reader.Read())
                 {
-                    Student abiturient = new Student();
-                    abiturient.ID_User = reader.GetInt32(0);
+                    AbiturientSPO abiturient = new AbiturientSPO();
+                    abiturient.ID_Abiturient = reader.GetInt32(0);
                     abiturient.SecondName = reader.GetString(1);
                     abiturient.FirstName = reader.GetString(2);
                     abiturient.Patronymic = reader.GetString(3);
                     abiturient.DateOfBirth = reader.GetDateTime(4);
-                    abiturient.PhoneNumber = reader.GetString(5);
-                    abiturient.Email = reader.GetString(6);
-                    abiturient.SeriaPassport = reader.GetInt32(7);
+                    abiturient.Email = reader.GetString(5);
+                    abiturient.PhoneNumber = reader.GetString(6);
+                    abiturient.SeriesPasport = reader.GetInt32(7);
                     abiturient.NumberPasport = reader.GetInt32(8);
-                    abiturient.Attestat = reader.GetString(9);
-                    abiturient.GroupNumber = reader.GetString(10);
+                    abiturient.FirstDirectionBall = reader.GetInt32(9);
+                    abiturient.SecondDirectionBall = reader.GetInt32(10);
+                    abiturient.ThiredDerictionBall = reader.GetInt32(11);
+                    abiturient.ID_FirstDirection = reader.GetInt32(12);
+                    abiturient.ID_SecondDirection = reader.GetInt32(13);
+                    abiturient.ID_ThiredDeriction = reader.GetInt32(14);
+
+                    abiturient.FirstDirection = GetDirectionName(abiturient.ID_FirstDirection);
+                    abiturient.SecondDirection = GetDirectionName(abiturient.ID_SecondDirection);
+                    abiturient.ThiredDeriction = GetDirectionName(abiturient.ID_ThiredDeriction);
+
+                    if (abiturient.ID_FirstDirection == ID_Direction) abiturient.SummBall = abiturient.FirstDirectionBall;
+                    else if (abiturient.ID_SecondDirection == ID_Direction) abiturient.SummBall = abiturient.SecondDirectionBall;
+                    else if (abiturient.ID_ThiredDeriction == ID_Direction) abiturient.SummBall = abiturient.ThiredDerictionBall;
 
                     abiturients.Add(abiturient);
                 }
                 reader.Close();
                 conn.Close();
                 return abiturients;
+            }
+        }
+
+
+
+        public List<Student> GetStudentWithGroup( string group)
+        {
+            string command = "USE Canteen " + $"select* from Students WHERE GroupNumber = '{group}'";
+            List<Student> students = new List<Student>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    Student student = new Student();
+                    student.ID_User = reader.GetInt32(0);
+                    student.SecondName = reader.GetString(1);
+                    student.FirstName = reader.GetString(2);
+                    student.Patronymic = reader.GetString(3);
+                    student.DateOfBirth = reader.GetDateTime(4);
+                    student.PhoneNumber = reader.GetString(5);
+                    student.Email = reader.GetString(6);
+                    student.SeriaPassport = reader.GetInt32(7);
+                    student.NumberPasport = reader.GetInt32(8);
+                    student.ID_Direction = reader.GetInt32(9);
+                    student.GroupNumber = reader.GetString(10);
+
+                    students.Add(student);
+                }
+                reader.Close();
+                conn.Close();
+                return students;
             }
         }
 
@@ -735,31 +1128,31 @@ namespace Canteen.Classes
         public List<Student> GetStudent()
         {
             string command = "USE Canteen " + "select* from Students";
-            List<Student> abiturients = new List<Student>();
+            List<Student> students = new List<Student>();
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
                 while (reader.Read())
                 {
-                    Student abiturient = new Student();
-                    abiturient.ID_User = reader.GetInt32(0);
-                    abiturient.SecondName = reader.GetString(1);
-                    abiturient.FirstName = reader.GetString(2);
-                    abiturient.Patronymic = reader.GetString(3);
-                    abiturient.DateOfBirth = reader.GetDateTime(4);
-                    abiturient.PhoneNumber = reader.GetString(5);
-                    abiturient.Email = reader.GetString(6);
-                    abiturient.SeriaPassport = reader.GetInt32(7);
-                    abiturient.NumberPasport = reader.GetInt32(8);
-                    abiturient.Attestat = reader.GetString(9);
-                    abiturient.GroupNumber = reader.GetString(10);
+                    Student student = new Student();
+                    student.ID_User = reader.GetInt32(0);
+                    student.SecondName = reader.GetString(1);
+                    student.FirstName = reader.GetString(2);
+                    student.Patronymic = reader.GetString(3);
+                    student.DateOfBirth = reader.GetDateTime(4);
+                    student.PhoneNumber = reader.GetString(5);
+                    student.Email = reader.GetString(6);
+                    student.SeriaPassport = reader.GetInt32(7);
+                    student.NumberPasport = reader.GetInt32(8);
+                    student.ID_Direction = reader.GetInt32(9);
+                    student.GroupNumber = reader.GetString(10);
 
-                    abiturients.Add(abiturient);
+                    students.Add(student);
                 }
                 reader.Close();
                 conn.Close();
-                return abiturients;
+                return students;
             }
         }
         public User GetUsersByEmail(string UserEmail)
@@ -832,10 +1225,10 @@ namespace Canteen.Classes
         }
 
         
-        public void EditAbiturientAttestat(int ID_Abiturient, string  Attestat)
+        public void EditAbiturientEGE(int ID_Abiturient, string  EGE)
         {
-            Abiturient abiturient = GetAbiturientByID(ID_Abiturient);
-            string command = "USE Canteen " + $"EXEC [dbo].EditAbiturient '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriaPassport}, {abiturient.NumberPasport}, '{Attestat}', {abiturient.FirstDirectionBall}, {abiturient.SecondDirectionBall}, {abiturient.ThiredDerictionBall}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_User}";
+            Abiturient11 abiturient = GetAbiturient11ByID(ID_Abiturient);
+            string command = "USE Canteen " + $"EXEC [dbo].EditAbiturient11 '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}',  '{abiturient.Email}','{abiturient.PhoneNumber}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, '{EGE}', {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_Abiturient}";
            
            
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
@@ -850,21 +1243,37 @@ namespace Canteen.Classes
 
 
 
-        public void EditAbiturient(Abiturient abiturient, int CompletedTest, int NumberTrueAnswer)
+        public void EditAbiturientSPO(AbiturientSPO abiturient, int CompletedTest, int NumberTrueAnswer)
         {
             string command = "";
             if (CompletedTest == 1)
             {
-                command = "USE Canteen " + $"EXEC [dbo].EditAbiturient '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriaPassport}, {abiturient.NumberPasport}, '{abiturient.Attestat}', {NumberTrueAnswer}, {abiturient.SecondDirectionBall}, {abiturient.ThiredDerictionBall}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_User}";
+                command = "USE Canteen " + $"EXEC [dbo].EditAbiturientSPO '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.Email}', '{abiturient.PhoneNumber}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, {NumberTrueAnswer}, {abiturient.SecondDirectionBall}, {abiturient.ThiredDerictionBall}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_Abiturient}";
             }
             else if (CompletedTest == 2)
             {
-                command = "USE Canteen " + $"EXEC [dbo].EditAbiturient '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriaPassport}, {abiturient.NumberPasport}, '{abiturient.Attestat}', {abiturient.FirstDirectionBall}, {NumberTrueAnswer}, {abiturient.ThiredDerictionBall}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_User}";
+                command = "USE Canteen " + $"EXEC [dbo].EditAbiturientSPO'{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.Email}', '{abiturient.PhoneNumber}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, {abiturient.FirstDirectionBall}, {NumberTrueAnswer}, {abiturient.ThiredDerictionBall}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_Abiturient}";
             }
             else if (CompletedTest == 3)
             {
-                command = "USE Canteen " + $"EXEC [dbo].EditAbiturient '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriaPassport}, {abiturient.NumberPasport}, '{abiturient.Attestat}', {abiturient.FirstDirectionBall}, {abiturient.SecondDirectionBall}, {NumberTrueAnswer}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_User}";
+                command = "USE Canteen " + $"EXEC [dbo].EditAbiturientSPO '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}',  '{abiturient.Email}', '{abiturient.PhoneNumber}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, {abiturient.FirstDirectionBall}, {abiturient.SecondDirectionBall}, {NumberTrueAnswer}, {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_Abiturient}";
             }
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command1 = new SqlCommand(command, conn);
+                command1.ExecuteScalar();
+                conn.Close();
+            }
+
+        }
+
+
+        public void EditAbiturient11(Abiturient11 abiturient)
+        {
+            string command = "USE Canteen " + $"EXEC [dbo].EditAbiturient11 '{abiturient.SecondName}','{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}',  '{abiturient.Email}', '{abiturient.PhoneNumber}', {abiturient.SeriesPasport}, {abiturient.NumberPasport}, '{abiturient.EGE}', {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}, {abiturient.ID_Abiturient}";
+
+
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
                 conn.Open();
@@ -932,10 +1341,79 @@ namespace Canteen.Classes
             return equal;
         }
 
+
+
+        public int HowMuchAbiturientsWithDirectionID(int ID_Direction)
+        {
+            int equal = 0;
+            string command = "USE Canteen " + $"select* from Abiturient11 Where ID_FirstDirection = {ID_Direction} or ID_SecondDirection = {ID_Direction} or ID_ThiredDirection = {ID_Direction}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    equal++;
+                }
+                reader.Close();
+                conn.Close();
+            }
+
+
+            string command3 = "USE Canteen " + $"select* from AbiturientSPO Where ID_FirstDirection = {ID_Direction} or ID_SecondDirection = {ID_Direction} or ID_ThiredDirection = {ID_Direction}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command3, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    equal++;
+                }
+                reader.Close();
+                conn.Close();
+            }
+            return equal;
+        }
+
+
+        public int HowMuchStudentsWithDirectionID(int ID_Direction)
+        {
+            string command = "USE Canteen " + $"select* from Students Where ID_Direction = {ID_Direction}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            int equal = 0;
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    equal++;
+                }
+                reader.Close();
+                conn.Close();
+            }
+            return equal;
+        }
+
         public int HowMuchAbiturients()
         {
-            string command = "USE Canteen " + $"select* from Abiturient"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
             int equal = 0;
+            string command = "USE Canteen " + $"select* from Abiturient11"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+           
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    equal++;
+                }
+                reader.Close();
+                conn.Close();
+            }
+            command = "USE Canteen " + $"select* from AbiturientSPO"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
                 conn.Open();
@@ -1161,6 +1639,56 @@ namespace Canteen.Classes
                 return question;
             }
         }
+        public List<Student> GetStudentByDirectionID(int ID_Direction)
+        {
+            List<Student> students = new List<Student>();
+            string command = "Use Canteen " + $"Select *from Students WHERE ID_Direction = {ID_Direction}";
+            using (System.Data.SqlClient.SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    Student student = new Student();
+                    student.ID_User = reader.GetInt32(0);
+                    student.SecondName = reader.GetString(1);
+                    student.FirstName = reader.GetString(2);
+                    student.Patronymic = reader.GetString(3);
+                    student.DateOfBirth = reader.GetDateTime(4);
+                    student.Email = reader.GetString(5);
+                    student.PhoneNumber = reader.GetString(6);
+                    student.SeriaPassport = reader.GetInt32(7);
+                    student.NumberPasport = reader.GetInt32(8);
+                    student.ID_Direction = reader.GetInt32(9);
+                    student.GroupNumber = reader.GetString(10);
+                    students.Add(student);
+
+                }
+                reader.Close();
+                conn.Close();
+                return students;
+            }
+        }
+
+
+        public int GetHowMuchStudentInGroup(int ID_Direction)
+        {
+            int number = 0;
+            string command = "Use Canteen " + $"Select *from Students WHERE ID_Direction = {ID_Direction}";
+            using (System.Data.SqlClient.SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read() )
+                {
+
+                    number++;
+                }
+                reader.Close();
+                conn.Close();
+                return number;
+            }
+        }
 
 
 
@@ -1276,7 +1804,7 @@ namespace Canteen.Classes
 
             Test test = new Test();
 
-
+            int ID_Test = 0;
             string command3 = "USE Canteen " + $"select* from Tests WHERE TestName = '{testName}'"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
             {
@@ -1284,33 +1812,66 @@ namespace Canteen.Classes
                 SqlDataReader reader = new SqlCommand(command3, conn).ExecuteReader();
                 while (reader.Read())
                 {
+
+                    ID_Test = reader.GetInt32(0);
                     
-                    test.ID_Test = reader.GetInt32(0);
                 }
                 reader.Close();
                 conn.Close();
             }
 
 
-
-            foreach (Question question in questions)
+            String Command4 = "use Canteen " + $"select *from Questions WHERE TestNumber = 0";
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                string command2 = "USE Canteen " + $"EXEC [dbo].AddQuestion '{question.QuestionString}','{question.A}', '{question.B}', '{question.C}', '{question.D}', '{question.Answer}', '{test.ID_Test}', '{question.QuestionType}'";
-
-                using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(Command4, conn).ExecuteReader();
+                while (reader.Read())
                 {
-                    conn.Open();
-                    SqlCommand command1 = new SqlCommand(command2, conn);
-                    command1.ExecuteScalar();
-                    conn.Close();
+                    Question question = new Question();
+                    question.ID_Question = reader.GetInt32(0);
+                    question.QuestionString = reader.GetString(1);
+                    question.A = reader.GetString(2);
+                    question.B = reader.GetString(3);
+                    question.C = reader.GetString(4);
+                    question.D = reader.GetString(5);
+                    question.Answer = reader.GetString(6);
+                    question.IDTest = ID_Test;
+                    question.QuestionType = reader.GetInt32(8);
+                    EditQuestion(question);
                 }
-
             }
+            
 
 
         }
 
-
+        public void DeleteEmptyQuestion()
+        {
+            String Command4 = "use Canteen " + $"select *from Questions WHERE TestNumber = 0";
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(Command4, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                
+                    int ID = reader.GetInt32(0);
+                    DeleteQuestion(ID);
+                }
+            }
+        }
+        public void DeleteQuestion(int ID)
+        {
+            String Command = "use Canteen " + $"EXEC [dbo].DeleteQuestion {ID}";
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand Command1 = new SqlCommand(Command, conn);
+                Command1.ExecuteScalar();
+                conn.Close();
+            }
+        }
 
         public List<Test> GetTests()
         {
@@ -1407,7 +1968,23 @@ namespace Canteen.Classes
                 return test;
             }
         }
-
+        public int GetHowStudentsCanBeInGroupByID(int ID_Direction)
+        {
+            int number = 0;
+            string command = "USE Canteen " + $"select* from Directions WHERE ID_Direction = {ID_Direction}";
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlDataReader reader = new SqlCommand(command, conn).ExecuteReader();
+                while (reader.Read())
+                {
+                    number = reader.GetInt32(2);
+                }
+                reader.Close();
+                conn.Close();
+                return number;
+            }
+        }
 
         public void AddDirection(Direction direction)
         {
@@ -1421,9 +1998,9 @@ namespace Canteen.Classes
             }
         }
 
-        public void AddAbiturient(Abiturient abiturient)
+        public void AddAbiturientSPO(AbiturientSPO abiturient)
         {
-            string command = "USE Canteen " + $"EXEC [dbo].[AddAbiturient] '{abiturient.SecondName}', '{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.PhoneNumber}', '{abiturient.Email}', {abiturient.SeriaPassport}, {abiturient.NumberPasport}, '{abiturient.Attestat}', {abiturient.FirstDirectionBall}, {abiturient.SecondDirectionBall}, {abiturient.ThiredDerictionBall},  {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}";
+            string command = "USE Canteen " + $"EXEC [dbo].[AddAbiturientSPO] '{abiturient.SecondName}', '{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.Email}', '{abiturient.PhoneNumber}',  {abiturient.SeriesPasport}, {abiturient.NumberPasport}, {abiturient.FirstDirectionBall}, {abiturient.SecondDirectionBall}, {abiturient.ThiredDerictionBall},  {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}";
             using (System.Data.SqlClient.SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
@@ -1433,6 +2010,17 @@ namespace Canteen.Classes
             }
         }
 
+        public void AddAbiturient11(Abiturient11 abiturient)
+        {
+            string command = "USE Canteen " + $"EXEC [dbo].[AddAbiturient11] '{abiturient.SecondName}', '{abiturient.FirstName}', '{abiturient.Patronymic}', '{abiturient.DateOfBirth}', '{abiturient.Email}', '{abiturient.PhoneNumber}',  {abiturient.SeriesPasport}, {abiturient.NumberPasport}, '{abiturient.EGE}',  {abiturient.ID_FirstDirection}, {abiturient.ID_SecondDirection}, {abiturient.ID_ThiredDeriction}";
+            using (System.Data.SqlClient.SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command1 = new SqlCommand(command, conn);
+                command1.ExecuteScalar();
+                conn.Close();
+            }
+        }
 
         public void EditDirection(Direction direction)
         {
@@ -1445,7 +2033,17 @@ namespace Canteen.Classes
                 conn.Close();
             }
         }
-
+        public void EditQuestion(Question question)
+        {
+            string command = "USE Canteen " + $"EXEC [dbo].EditQuestion '{question.QuestionString}','{question.A}','{question.B}','{question.C}','{question.D}','{question.Answer}','{question.IDTest}','{question.QuestionType}', {question.ID_Question}"; //для многого where пишешь ещё AND и после название переменной = '{переменная}'
+            using (System.Data.SqlClient.SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command1 = new SqlCommand(command, conn);
+                command1.ExecuteScalar();
+                conn.Close();
+            }
+        }
 
         public void DeleteDirection(int ID_Direction)
         {

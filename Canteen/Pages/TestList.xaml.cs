@@ -101,7 +101,8 @@ namespace Canteen.Pages
             {
                 int ID_Test = tests[MetricsDataGrid.SelectedIndex].ID_Test;
                 new ConnectToDB().DeleteTest(ID_Test);
-                MetricsDataGrid.ItemsSource = new ConnectToDB().GetTests();
+                MessageBox.Show("Тест удалён");
+                NavigationService.Navigate(new AdminPage(MainUser));
             }
         }
     }

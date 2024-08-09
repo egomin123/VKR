@@ -17,7 +17,7 @@ namespace Canteen.Classes
         public string Email { get; set; }
         public int SeriaPassport { get; set; }
         public int NumberPasport { get; set; }
-        public string Attestat { get; set; }
+        public int ID_Direction { get; set; }
         public string GroupNumber { get; set; }
     }
 }

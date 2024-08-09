@@ -22,7 +22,7 @@ namespace Canteen.Pages
     public partial class AbiturientTestPage : Page
     {
         User MainUser;
-        Abiturient MainAbiturient;
+        AbiturientSPO MainAbiturient;
         int QuestionNumber = 0;
         int ID_Test = 0;
         int ID_FirstDirection = 0;
@@ -33,7 +33,7 @@ namespace Canteen.Pages
         int NumberCompletedTests = 0;
 
 
-        public AbiturientTestPage(User user, int IDTest, Abiturient abiturient, string Testname, int IDFirstDirection, int IDSecondDirection, int IDThiredDirection, int NumberCompletedTests1)
+        public AbiturientTestPage(User user, int IDTest, AbiturientSPO abiturient, string Testname, int IDFirstDirection, int IDSecondDirection, int IDThiredDirection, int NumberCompletedTests1)
         {
             InitializeComponent();
             NumberCompletedTests = NumberCompletedTests1;
@@ -166,15 +166,14 @@ namespace Canteen.Pages
             else
             {
                 int Score = 0;
+                
                 int NumberUqestions = new ConnectToDB().HowMuchQuestion(ID_Test);
+                decimal BallForOneTrueQuestion = 100 / NumberUqestions;
                 decimal Score1 = Convert.ToDecimal(NumberTrueAnswer) / Convert.ToDecimal(NumberUqestions) *100;
-                if (Score1 < 50) Score = 2;
-                if (Score1 >= 50) Score = 3;
-                if (Score1 >= 70) Score = 4;
-                if (Score1 >= 90) Score = 5;
+                Score = Convert.ToInt32(NumberTrueAnswer * BallForOneTrueQuestion);
                 NumberCompletedTests++;
-                MainAbiturient = new ConnectToDB().GetAbiturientByID(MainAbiturient.ID_User);
-                new ConnectToDB().EditAbiturient(MainAbiturient, NumberCompletedTests, Score);
+                MainAbiturient = new ConnectToDB().GetAbiturientSPOByID(MainAbiturient.ID_Abiturient);
+                new ConnectToDB().EditAbiturientSPO(MainAbiturient, NumberCompletedTests, Score);
                
                 MessageBox.Show("Вы ответили - " + NumberTrueAnswer + " верно из " + NumberOfQuestionOnTest);
                 NavigationService.Navigate(new StartTestPage(MainUser, MainAbiturient, ID_FirstDirection, ID_SecondDirection, ID_ThiredDirection, NumberCompletedTests));

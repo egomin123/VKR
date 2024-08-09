@@ -28,9 +28,9 @@ namespace Canteen.Pages
             InitializeComponent();
             MainUser = user;
             LoginBlock.Header = user.Login;
-            Abiturients = new ConnectToDB().HowMuchAbiturients();
-            HowMushStesentsText.Text = ("Количество абитуриентов: " + Convert.ToString(Abiturients));
+            DirectionCB.ItemsSource = directions;
         }
+        List<string> directions = new ConnectToDB().GetDirectionsForCB();
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
@@ -46,6 +46,7 @@ namespace Canteen.Pages
         {
             try
             {
+                int ID_Direction = new ConnectToDB().GetDirectionsIDFromCB(DirectionCB.Text);
                 int equal = Convert.ToInt32(HowMuchAbiturientBox.Text);
                 if (equal > Abiturients)
                 {
@@ -53,8 +54,15 @@ namespace Canteen.Pages
                 }
                 else
                 {
-                    List<Abiturient> Entered_Abiturients = new ConnectToDB().GetAbiturient();
-                    new ConnectToDB().AddStudentsFromAbiturients(Entered_Abiturients, equal);
+                    List<Abiturient11> abiturients11 = new ConnectToDB().GetAbiturient11FromAccepted(ID_Direction);
+                    abiturients11.Sort(delegate (Abiturient11 c1, Abiturient11 c2) { return c1.EGE.CompareTo(c2.EGE); });
+                    abiturients11.Reverse();
+
+                    List<AbiturientSPO> abiturientsSPO = new ConnectToDB().GetAbiturientSPOFromAccepted(ID_Direction);
+                    abiturientsSPO.Sort(delegate (AbiturientSPO c1, AbiturientSPO c2) { return c1.SummBall.CompareTo(c2.SummBall); });
+                    abiturientsSPO.Reverse();
+
+                    new ConnectToDB().AddStudentsFromAbiturients(abiturients11, abiturientsSPO, ID_Direction, Convert.ToInt32(HowMuchAbiturientBox.Text));
                     NavigationService.Navigate(new Students(MainUser));
                 }
             }
@@ -66,6 +74,13 @@ namespace Canteen.Pages
         private void Back(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainPage(MainUser));
+        }
+
+        private void DirectionCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int ID_Direction = new ConnectToDB().GetDirectionsIDFromCB(Convert.ToString(DirectionCB.SelectedValue));
+            Abiturients = new ConnectToDB().HowMuchAbiturientsWithDirectionID(ID_Direction);
+            HowMushStesentsText.Text = ("Направление выбрало: " + Convert.ToString(Abiturients) + " абитуриентов");
         }
     }
 }

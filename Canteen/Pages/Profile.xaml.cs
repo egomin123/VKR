@@ -35,20 +35,7 @@ namespace Canteen.Pages
             Patronymic.Text = MainUser.Patronymic;
         }
 
-        private void Go_To_Page1(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new AbiturientList(MainUser));
-        }
-
-        private void Go_To_Page2(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Students(MainUser));
-        }
-
-        private void Go_To_Group(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Groups(MainUser));
-        }
+     
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -93,6 +80,8 @@ namespace Canteen.Pages
             if (MainUser.Role_ID == 2)
                 NavigationService.Navigate(new MainPage(MainUser));
             else if (MainUser.Role_ID == 1003)
+                NavigationService.Navigate(new TesterPage(MainUser));
+            else if (MainUser.Role_ID == 1)
                 NavigationService.Navigate(new TesterPage(MainUser));
         }
     }

@@ -105,6 +105,7 @@
     <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -123,6 +124,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Abiturient11.cs" />
+    <Compile Include="Classes\AbiturientSPO.cs" />
     <Compile Include="Classes\Direction.cs" />
     <Compile Include="Classes\Question.cs" />
     <Compile Include="Classes\Roles.cs" />
@@ -147,9 +150,6 @@
     <Compile Include="Classes\Student.cs" />
     <Compile Include="Pages\AbiturientList.xaml.cs">
       <DependentUpon>AbiturientList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AddTestPage.xaml.cs">
-      <DependentUpon>AddTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CreateTestPage.xaml.cs">
       <DependentUpon>CreateTestPage.xaml</DependentUpon>
@@ -177,9 +177,6 @@
     </Compile>
     <Compile Include="Pages\QuestionListForAdminPage.xaml.cs">
       <DependentUpon>QuestionListForAdminPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReadTestPage.xaml.cs">
-      <DependentUpon>ReadTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ResultsTestsPage.xaml.cs">
       <DependentUpon>ResultsTestsPage.xaml</DependentUpon>
@@ -222,10 +219,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AbiturientList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\AddTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,10 +298,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\QuestionListForAdminPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ReadTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

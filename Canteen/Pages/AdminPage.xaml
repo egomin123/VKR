@@ -33,6 +33,10 @@
         <TextBlock TextAlignment="Center" Name="TextTextText" HorizontalAlignment="Left" Margin="234,79,0,0" TextWrapping="Wrap" Text="TEXT TEXT TEXT TEXT" FontSize="25" FontWeight="Bold" VerticalAlignment="Top" Height="80" Width="395"/>
         <Button Content="Перейти" HorizontalAlignment="Left" Margin="8,268,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Go_To_User_List" />
         <TextBlock HorizontalAlignment="Left" Margin="8,247,0,0" TextWrapping="Wrap" Text="Список Пользователей" VerticalAlignment="Top"/>
+        <Button Content="Перейти" HorizontalAlignment="Left" Margin="8,318,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Reserv" />
+        <Button Content="Перейти" HorizontalAlignment="Left" Margin="8,368,0,0" VerticalAlignment="Top" Width="133" Height="22" FontSize="10" Click="Vosstanow" />
+        <TextBlock HorizontalAlignment="Left" Margin="8,347,0,0" TextWrapping="Wrap" Text="Восстановление данных" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="8,297,0,0" TextWrapping="Wrap" Text="Резервное копирование" VerticalAlignment="Top"/>
 
 
     </Grid>

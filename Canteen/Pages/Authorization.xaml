@@ -15,9 +15,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Авториазация"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0" Margin="317,90,314.6,297"/>
-        <TextBlock Text="Login:" Margin="98.2,17,99.6,89" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0"/>
+        <TextBlock Text="Логин:" Margin="98.2,17,99.6,89" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0"/>
         <TextBox x:Name="Login" Grid.Column="0" Grid.Row="0" Margin="55.2,52,53.6,70" HorizontalAlignment="Center" VerticalAlignment="Center" Width="156"/>
-        <TextBlock Text="Password:" Margin="77.2,82,73.6,24" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0" Width="114"/>
+        <TextBlock Text="Пароль:" Margin="376,262,345.6,204" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="0" Grid.Row="0" Width="128"/>
         <PasswordBox x:Name="Password" Grid.Column="0" Grid.Row="0" Margin="55.2,117,53.6,5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="156"/>
         <Button Foreground="Black" Content="Войти" HorizontalAlignment="Center" Margin="296,333,427.6,141" VerticalAlignment="Center" Width="126" Background="White" Grid.Column="0" Grid.Row="0" Click="Enter"  Height="26" />
         <Button Foreground="Black" Content="Забыл пароль" HorizontalAlignment="Center" Margin="429,333,294.6,141" VerticalAlignment="Center" Width="126" Background="White" Grid.Column="0" Grid.Row="0" Click="ForgetThePassword" Height="26" />

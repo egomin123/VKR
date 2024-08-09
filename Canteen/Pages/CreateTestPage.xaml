@@ -32,7 +32,7 @@
         <Label Content="Вопрос"  HorizontalContentAlignment="Center" Foreground="Black" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,139,0,0" VerticalAlignment="Top" Width="268" Height="37"/>
 
         <TextBox HorizontalAlignment="Left" Name="TestName" Height="34" Margin="22,108,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="401"/>
-        <TextBox HorizontalAlignment="Left" Name="QuestionTB" Height="34" Margin="22,174,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="280"/>
+        <TextBox HorizontalAlignment="Left" Name="QuestionTB" MaxLength="150" Height="34" Margin="22,174,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="280"/>
         <TextBox HorizontalAlignment="Left" Name="ATB" Height="34" Margin="61,249,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="362"/>
         <Label Content="Варианты Ответов" Name="SelectedQuestionsL"  HorizontalContentAlignment="Center" Foreground="Black" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,210,0,0" VerticalAlignment="Top" Width="388"/>
         <TextBox HorizontalAlignment="Left" Name="BTB" Height="34" Margin="61,288,0,0" TextWrapping="Wrap" Text="" Background="White" VerticalAlignment="Top" Width="362"/>

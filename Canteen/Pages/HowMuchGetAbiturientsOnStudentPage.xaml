@@ -20,12 +20,15 @@
                 <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
             </MenuItem>
         </Menu>
-        <TextBlock HorizontalAlignment="Left" Margin="137,64,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Сколько абитуриентов принять?" VerticalAlignment="Top" Height="55" Width="573"/>
-        <TextBlock Name="HowMushStesentsText" HorizontalAlignment="Left" Margin="137,136,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Количество абитуриентов: ***" VerticalAlignment="Top" Height="55" Width="573"/>
-        <TextBlock HorizontalAlignment="Left" Margin="85,240,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Количество:" VerticalAlignment="Top"/>
-        <TextBox Name="HowMuchAbiturientBox" Background="White" HorizontalAlignment="Left" Height="60" MaxLength="3" Margin="297,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159" PreviewTextInput="JustNumbers"/>
-        <Button Content="Продолжить" HorizontalAlignment="Left" Margin="440,340,0,0" VerticalAlignment="Top" Width="128" Height="42" Click="Start_Selection"/>
+        <TextBlock HorizontalAlignment="Left" Margin="80,80,0,0" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Text="На какое направление принять абитуриентов?" VerticalAlignment="Top" Height="55" Width="692"/>
+        <TextBlock Name="HowMushStesentsText" HorizontalAlignment="Left" Margin="80,180,0,0" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Text="Направление выбрало: *** абитуриентов" VerticalAlignment="Top" Height="55" Width="611"/>
+        <TextBlock HorizontalAlignment="Left" Margin="80,280,0,0" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Text="Количество:" VerticalAlignment="Top"/>
+        <TextBox Name="HowMuchAbiturientBox" Background="White" HorizontalAlignment="Left" Height="60" MaxLength="3" Margin="264,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159" PreviewTextInput="JustNumbers"/>
+        <Button Content="Продолжить" HorizontalAlignment="Left" Margin="505,340,0,0" VerticalAlignment="Top" Width="128" Height="42" Click="Start_Selection"/>
         <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
+        <ComboBox Name="DirectionCB" HorizontalAlignment="Left" Background="White" Margin="291,135,0,0" VerticalAlignment="Top" Width="159" Height="40" SelectionChanged="DirectionCB_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="80,130,0,0" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Text="Направление:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="80,230,0,0" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Text="Сколько принять абитуриентов?" VerticalAlignment="Top" Height="55" Width="692"/>
 
     </Grid>
 </Page>

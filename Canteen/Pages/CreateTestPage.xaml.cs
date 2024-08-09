@@ -67,51 +67,70 @@ namespace Canteen.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Question New_Question = new Question();
-            New_Question.QuestionString = QuestionTB.Text;
-            if (TypeOfQuestionCB.SelectedIndex == 0)
+            if (QuestionTB.Text == "" || QuestionTB.Text == null) MessageBox.Show("Введите вопрос");
+            else
             {
-                
-                New_Question.A = ATB.Text;
-                New_Question.B = BTB.Text;
-                New_Question.C = CTB.Text;
-                New_Question.D = DTB.Text;
-                New_Question.Answer = AnswerCB.Text;
-                New_Question.QuestionType = 0;
-                New_Question.QuestionTypeString = "Выбор правильного ответа";
-            }
-            else if (TypeOfQuestionCB.SelectedIndex == 1)
-            {
-                string asnwer = "";
-                New_Question.A = ATBSelect.Text;
-                New_Question.B = BTBSelect.Text;
-                New_Question.C = CTBSelect.Text;
-                New_Question.D = DTBSelect.Text;
-                if(ACB.IsChecked == true)
-                    asnwer += "А";
-                if (BCB.IsChecked == true)
-                    asnwer += "Б";
-                if (CCB.IsChecked == true)
-                    asnwer += "В";
-                if (DCB.IsChecked == true)
-                    asnwer += "Г";
-                New_Question.Answer = asnwer;
-                New_Question.QuestionType = 1;
-                New_Question.QuestionTypeString = "Выбор нескольких ответов";
+                New_Question.QuestionString = QuestionTB.Text;
+                if (TypeOfQuestionCB.SelectedIndex == 0)
+                {
+                    if (ATB.Text == "" || ATB.Text == null || BTB.Text == "" || BTB.Text == null) MessageBox.Show("Введите вариант А и Б");
+                    else
+                    {
+                        New_Question.A = ATB.Text;
+                        New_Question.B = BTB.Text;
+                        New_Question.C = CTB.Text;
+                        New_Question.D = DTB.Text;
+                        New_Question.Answer = AnswerCB.Text;
+                        New_Question.QuestionType = 0;
+                        New_Question.QuestionTypeString = "Выбор правильного ответа";
+                    }
+                }
+                else if (TypeOfQuestionCB.SelectedIndex == 1)
+                {
+                    string asnwer = "";
+                    if (ATBSelect.Text == "" || ATBSelect.Text == null || BTBSelect.Text == "" || BTBSelect.Text == null) MessageBox.Show("Введите вариант А и Б");
+                    else
+                    {
+                        New_Question.A = ATBSelect.Text;
+                        New_Question.B = BTBSelect.Text;
+                        New_Question.C = CTBSelect.Text;
+                        New_Question.D = DTBSelect.Text;
+                        if (ACB.IsChecked == true)
+                            asnwer += "А";
+                        if (BCB.IsChecked == true)
+                            asnwer += "Б";
+                        if (CCB.IsChecked == true)
+                            asnwer += "В";
+                        if (DCB.IsChecked == true)
+                            asnwer += "Г";
+                        New_Question.Answer = asnwer;
+                        New_Question.QuestionType = 1;
+                        New_Question.QuestionTypeString = "Выбор нескольких ответов";
+                    }
 
+                }
+                else if (TypeOfQuestionCB.SelectedIndex == 2)
+                {
+                    if (ATB.Text == null || ATB.Text == "") MessageBox.Show("Введите ответ");
+                    else
+                    {
+                        New_Question.A = "-";
+                        New_Question.B = "-";
+                        New_Question.C = "-";
+                        New_Question.D = "-";
+                        New_Question.Answer = ATB.Text;
+                        New_Question.QuestionType = 2;
+                        New_Question.QuestionTypeString = "Вписать ответ";
+                    }
+                }
+                if (New_Question.QuestionTypeString == "Выбор правильного ответа" || New_Question.QuestionTypeString == "Выбор нескольких ответов" || New_Question.QuestionTypeString == "Вписать ответ")
+                {
+                    new ConnectToDB().AddQuestion(New_Question);
+                    ClearUeqstions();
+                    MetricsDataGrid.Items.Add(New_Question);
+                }
+                
             }
-            else if (TypeOfQuestionCB.SelectedIndex == 2)
-            {
-                New_Question.A = "-";
-                New_Question.B = "-";
-                New_Question.C = "-";
-                New_Question.D = "-";
-                New_Question.Answer = ATB.Text;
-                New_Question.QuestionType = 2;
-                New_Question.QuestionTypeString = "Вписать ответ";
-            }
-            questions.Add(New_Question);
-            ClearUeqstions();
-            MetricsDataGrid.Items.Add(New_Question);
 
         }
 
@@ -142,9 +161,19 @@ namespace Canteen.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new ConnectToDB().AddTest(questions, TestName.Text);
+            if (TestName.Text == "" || TestName.Text == null)
+            { MessageBox.Show("Введите название теста"); }
+            else
+            {
+                if (MetricsDataGrid.Items.Count < 2) MessageBox.Show("В тесте слишком мало вопросов, сделайте хотя бы 3 вопроса");
+                else
+                {
+                    new ConnectToDB().AddTest(questions, TestName.Text);
+                    MessageBox.Show("Тест сохранён");
+                    NavigationService.Navigate(new TestList(MainUser));
+                }
+            }
         }
-
         private void TypeOfQuestionCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TypeOfQuestionCB.SelectedIndex == 0)

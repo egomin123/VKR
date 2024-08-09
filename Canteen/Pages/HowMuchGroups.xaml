@@ -20,11 +20,13 @@
                 <MenuItem x:Name="SignOut" Header="Выйти из аккаунта" Click="SignOut_Click" />
             </MenuItem>
         </Menu>
-        <TextBlock HorizontalAlignment="Left" Margin="137,64,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="На сколько групп распределить?" VerticalAlignment="Top" Height="55" Width="573"/>
-        <TextBlock Name="HowMushStesentsText" HorizontalAlignment="Left" Margin="137,136,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Количество студентов: ***" VerticalAlignment="Top" Height="55" Width="573"/>
-        <TextBlock HorizontalAlignment="Left" Margin="179,235,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Групп:" VerticalAlignment="Top"/>
-        <TextBox Name="HowMuchGroupBox" Background="White" HorizontalAlignment="Left" Height="60" MaxLength="2" Margin="297,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159" PreviewTextInput="JustNumbers"/>
+        <TextBlock HorizontalAlignment="Left" Margin="100,90,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Какое направление распределить?" VerticalAlignment="Top" Height="55" Width="604"/>
+        <TextBlock Name="HowMushStesentsText" HorizontalAlignment="Left" Margin="100,210,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Количество студентов: ***" VerticalAlignment="Top" Height="55" Width="573"/>
+        <TextBlock HorizontalAlignment="Left" Margin="100,260,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Количество групп:" VerticalAlignment="Top"/>
+        <TextBox Name="HowMuchGroupBox" Background="White" HorizontalAlignment="Left" Height="60" MaxLength="2" Margin="450,265,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" PreviewTextInput="JustNumbers"/>
         <Button Content="Продолжить" HorizontalAlignment="Left" Margin="440,340,0,0" VerticalAlignment="Top" Width="128" Height="42" Click="Button_Click"/>
         <Button Content="🠔" FontSize="20" HorizontalAlignment="Left" Margin="4,11,0,0" VerticalAlignment="Top" Width="53" Click="Back" Height="30" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="100,150,0,0" FontWeight="Bold" FontSize="35" TextWrapping="Wrap" Text="Направление:" VerticalAlignment="Top"/>
+        <ComboBox Name="DirectionCB" Background="White" HorizontalAlignment="Left" Margin="346,161,0,0" VerticalAlignment="Top" Width="200" Height="50" SelectionChanged="DirectionCB_SelectionChanged"/>
     </Grid>
 </Page>
